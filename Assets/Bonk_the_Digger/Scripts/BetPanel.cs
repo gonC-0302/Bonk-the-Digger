@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Cinemachine;
-using Unity.Collections.LowLevel.Unsafe;
 
 public class BetPanel : MonoBehaviour
 {
@@ -37,12 +36,19 @@ public class BetPanel : MonoBehaviour
 
     private void OnValueChanged(string betValue)
     {
+        if (string.IsNullOrEmpty(betValue)) return;
+
         // 桁数上限
         if (_inputField.text.Length > Constant.MAX_BET_DIGIT)
         {
             _inputField.text = _inputField.text[..Constant.MAX_BET_DIGIT];
         }
 
+        if (betValue.StartsWith("0"))
+        {
+            okButton.interactable = false;
+            return;
+        }
         // TODO: 所持金でかけれる上限
 
         // 未入力制限
@@ -77,14 +83,16 @@ public class BetPanel : MonoBehaviour
             bombButtonsList[i].image.color = Color.white;
         }
         bombCountCache = bombButtonID;
+        SoundManager.instance.PlaySE(SoundType.SelectBombCount);
     }
     private void OnClickOKButton()
     {
         cashOutPanel.SetActive(true);
         gameObject.SetActive(false);
         cinemachinePositionComposer.TargetOffset = new Vector3(0,-1.25f,0);
-        cashManager.SetBet(betValueCache);
+        // 爆弾の数を設定
         floorManager.SetBombsInitialFloor(bombCountCache);
+        cashManager.SetBet(betValueCache);
         gameManager.StartGame();
     }
 }

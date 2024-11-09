@@ -11,8 +11,6 @@ public class TouchDetector : MonoBehaviour
     [SerializeField]
     private Character character;
     private Tile bonusTile;
-    [SerializeField]
-    private SoundManager soundManager;
 
     void Update()
     {
@@ -45,11 +43,10 @@ public class TouchDetector : MonoBehaviour
                     {
                         if (tile != bonusTile) return;
                         tile.UpdateTapCount();
-                        soundManager.PlayTapTreasureBoxSE();
+                        SoundManager.instance.PlaySE(SoundType.TapTreasureBox);
                         if (tile.TapCount > 10)
                         {
-                            tile.GetItem();
-                            character.GoNextFloor();
+                            StartCoroutine(character.GetTreasureBox(tile));
                         }
                     }
                 }

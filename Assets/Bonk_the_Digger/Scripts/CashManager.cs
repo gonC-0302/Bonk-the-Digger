@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -11,21 +12,23 @@ public class CashManager : MonoBehaviour
     private CashBackRateDataSO dataSO;
     private int currentCash;
     private int betValue;
+    private float currentRate;
 
+    /// <summary>
+    /// 初期の賭け金を登録
+    /// </summary>
+    /// <param name="betValue"></param>
     public void SetBet(int betValue)
     {
         this.betValue = betValue;
+        currentRate = 1;
         Debug.Log($"賭け金を{betValue}で確定");
         currentCash = betValue;
-        UpdateCashText();
+        UpdatePrizeMultiplierText();
     }
-    /// <summary>
-    /// 階層を進めることによるキャッシュ増加
-    /// </summary>
-    public void IncreaseCashByNextFloor(int floorNumber)
+    public string GetCurrentRate()
     {
-        var data = dataSO.ratesList.Find(x => x.bombCount == floorManager.BombCount);
-        EvaluateCurrentCash(data.baseRate, data.multipleRate, floorNumber);
+        return currentRate.ToString("f2");
     }
     /// <summary>
     /// 現在のキャッシュ額を計算して表示更新
@@ -33,34 +36,76 @@ public class CashManager : MonoBehaviour
     /// <param name="baseRate"></param>
     /// <param name="multipleRate"></param>
     /// <param name="floorNumber"></param>
-    private void EvaluateCurrentCash(float baseRate, float multipleRate, int floorNumber)
+    public void EvaluateCurrentCash(int clearCount)
     {
-        if (floorNumber < 1) return;
+        if (clearCount < 1) return;
+        currentRate = CalclateCashBackRate(clearCount);
+        float resultCashFloat = betValue * currentRate;
+        currentCash = Mathf.FloorToInt(resultCashFloat);
+        UpdatePrizeMultiplierText();
+    }
+    //public float CalclateCashBackRate(int clearCount)
+    //{
+    //    var data = dataSO.ratesList.Find(x => x.bombCount == floorManager.BombCount);
 
-        float resultCashFloat;
-        var initialFloorNumber = 1;
-        // 2階層の時(1回クリア)
-        if(floorNumber == initialFloorNumber + 1)
+    //    float cashBackRate;
+    //    if (clearCount == 1)
+    //    {
+    //        cashBackRate = data.baseRate;
+    //    }
+    //    else
+    //    {
+    //        float rate = Mathf.Pow(data.multipleRate, clearCount - 1);
+    //        // 賞金倍率は小数第二位までで計算（小数第三位を四捨五入）
+    //        var cashBackRateStr = (data.baseRate * rate).ToString("f2");
+    //        cashBackRate = float.Parse(cashBackRateStr);
+    //    }
+    //    Debug.Log($"賞金倍率：{cashBackRate}");
+    //    return cashBackRate;
+    //}
+    //private void UpdateCashText()
+    //{
+    //    cashText.text = $"${currentCash.ToString()}";
+    //}
+    public void GetBonus(float bonusMultiplier)
+    {
+        currentRate *= bonusMultiplier;
+        UpdatePrizeMultiplierText();
+    }
+    private void UpdatePrizeMultiplierText()
+    {
+        cashText.text = $"x{currentRate.ToString()}";
+    }
+    /// <summary>
+    /// 現在のキャッシュ額を計算して表示更新
+    /// </summary>
+    /// <param name="baseRate"></param>
+    /// <param name="multipleRate"></param>
+    /// <param name="floorNumber"></param>
+    //public void EvaluateCurrentCash(int clearCount)
+    //{
+    //    if (clearCount < 1) return;
+    //    currentRate = CalclateCashBackRate(clearCount);
+    //    Debug.Log($"賞金倍率：{currentRate}");
+    //    float resultCashFloat = betValue * currentRate;
+    //    currentCash = Mathf.FloorToInt(resultCashFloat);
+    //    UpdateCashText();
+    //}
+    private float CalclateCashBackRate(int clearCount)
+    {
+        var data = dataSO.ratesList.Find(x => x.bombCount == floorManager.BombCount);
+        float cashBackRate = this.currentRate;
+        if (clearCount == 1)
         {
-            resultCashFloat = betValue * baseRate;
-            Debug.Log($"賞金倍率：{baseRate}(基本倍率)");
-            Debug.Log($"現在の払い戻し金額：{betValue} * {baseRate} = {betValue * baseRate}");
+            cashBackRate *= data.baseRate;
         }
-        // 3階層以降(2回クリア以降)
         else
         {
-            float rate = Mathf.Pow(multipleRate, floorNumber - 2);
-            // 賞金倍率は小数第二位までで計算（小数第三位を四捨五入）
-            var rateStr = rate.ToString("f2");
-            Debug.Log($"賞金倍率：{baseRate * float.Parse(rateStr)}");
-            resultCashFloat = betValue * baseRate * float.Parse(rateStr);
-            Debug.Log($"現在の払い戻し金額：{betValue} * {baseRate} * {float.Parse(rateStr)} = {betValue * baseRate * float.Parse(rateStr)}");
+            cashBackRate *= data.multipleRate;
         }
-        currentCash = Mathf.FloorToInt(resultCashFloat);
-        UpdateCashText();
-    }
-    private void UpdateCashText()
-    {
-        cashText.text = $"${currentCash.ToString()}";
+        // 賞金倍率は小数第二位までで計算（小数第三位を四捨五入）
+        var cashBackRateStr = cashBackRate.ToString("f2");
+        cashBackRate = float.Parse(cashBackRateStr);
+        return cashBackRate;
     }
 }

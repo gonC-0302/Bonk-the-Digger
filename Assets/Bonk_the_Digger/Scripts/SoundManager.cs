@@ -1,26 +1,41 @@
 using UnityEngine;
 
+public enum SoundType
+{
+    SelectBombCount,
+    Dig,
+    GetMeat,
+    ShowTreasureBox,
+    TapTreasureBox,
+    Explosion
+}
+
 public class SoundManager : MonoBehaviour
 {
     [SerializeField]
     private AudioSource source;
+    public static SoundManager instance;
 
-    [SerializeField]
-    private AudioClip bombSE,meatSE,tapTreasureBoxSE;
-
-    public void PlayBombSE()
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    public void StopBGM()
     {
         source.Stop();
-        source.PlayOneShot(bombSE);
     }
 
-    public void PlayGetMeatSE()
+    public void PlaySE(SoundType type)
     {
-        source.PlayOneShot(meatSE);
-    }
-
-    public void PlayTapTreasureBoxSE()
-    {
-        source.PlayOneShot(tapTreasureBoxSE);
+        var clip = DataBaseManager.instance.soundDataSO.soundDatasList.Find(x => x.type == type).clip;
+        source.PlayOneShot(clip);
     }
 }

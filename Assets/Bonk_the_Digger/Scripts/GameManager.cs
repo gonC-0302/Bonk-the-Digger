@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         // 現在のフロアNo.を更新
         floorManager.UpdateFloorNumber();
         // 現在のキャッシュを増加
-        cashManager.IncreaseCashByNextFloor(floorManager.CurrentFloorNumber);
+        //cashManager.IncreaseCashBack(floorManager.CurrentFloorNumber);
         currentState = GameState.SelectTile;
     }
 }

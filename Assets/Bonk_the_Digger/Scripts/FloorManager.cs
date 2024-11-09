@@ -63,7 +63,7 @@ public class FloorManager : MonoBehaviour
     public void UpdateFloorNumber()
     {
         currentFloorNumber++;
-        Debug.Log($"現在の階層：{currentFloorNumber}");
+        //Debug.Log($"現在の階層：{currentFloorNumber}");
         var outsideViewCount = 3;
         // 4フロア目以降になると、順次フロアを上に移動させて使い回す
         if (currentFloorNumber > outsideViewCount) MoveFloor(currentFloorNumber - outsideViewCount);

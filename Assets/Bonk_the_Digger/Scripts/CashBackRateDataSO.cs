@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "CashBackRateDateSO", fileName = "CashBackRateDate")]
+[CreateAssetMenu(menuName = "CashBackRateDateSO", fileName = "Scriptable Objects/CashBackRateDate")]
 public class CashBackRateDataSO : ScriptableObject
 {
     public List<Rate> ratesList = new List<Rate>();

@@ -1,14 +1,15 @@
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using DG.Tweening.Core.Easing;
 
 public class Character : MonoBehaviour
 {
     [SerializeField]
     private GameManager gameManager;
-
     [SerializeField]
-    private SoundManager soundManager;
+    private CashManager cashManager;
+    private int clearCount;
 
     /// <summary>
     /// 掘る対象のタイルの場所まで移動
@@ -37,35 +38,58 @@ public class Character : MonoBehaviour
     /// <returns></returns>
     private IEnumerator PlayDigAnimation(Tile tile)
     {
-        yield return new WaitForSeconds(0.1f);
-        tile.OpenTile();
-        // TODO: タイルに爆弾がないか確認して進む（爆弾あれば終了）
+        SoundManager.instance.PlaySE(SoundType.Dig);
+        // TODO: 掘るアニメーション
+        var originPos = gameObject.transform.position;
+        var moveTargetPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 0.5f);
+        transform.DOMove(moveTargetPos, 0.25f)
+            .OnComplete(() => transform.DOMove(originPos, 0.25f)).SetLoops(2,LoopType.Yoyo);
+        tile.transform.DOShakeRotation(0.8f, strength:50, vibrato: 5);
+        yield return new WaitForSeconds(1f);
+        tile.ShowItem();
         switch (tile.Type)
         {
             case TileType.Normal:
-                yield return new WaitForSeconds(0.1f);
-                tile.GetItem();
-                GoNextFloor();
+                // TODO: 取得アニメーション?(何が出たか見せる時間必要？)
+                yield return new WaitForSeconds(0.75f);
+                GetItem(tile);
                 yield break;
             case TileType.Bomb:
-                Debug.Log($"爆弾!!!!!!!!!!!!!!");
                 tile.ExplodeBomb();
-                yield return new WaitForSeconds(0.5f);
-                soundManager.PlayBombSE();
                 yield break;
             case TileType.Bonus:
                 gameManager.StartBonusTap();
                 yield break;
         }
     }
+
+    public void GetItem(Tile tile)
+    {
+        tile.HideItem();
+        clearCount++;
+        cashManager.EvaluateCurrentCash(clearCount);
+        SoundManager.instance.PlaySE(SoundType.GetMeat);
+        GoNextFloor();
+    }
+    public IEnumerator GetTreasureBox(Tile tile)
+    {
+        //tile.HideItem();
+        clearCount++;
+        float random = Random.Range(0.5f, 4f);
+        string randomStr = random.ToString("f1");
+        cashManager.GetBonus(float.Parse(randomStr));
+        yield return StartCoroutine(tile.GetBonus(randomStr));
+        cashManager.EvaluateCurrentCash(clearCount);
+        SoundManager.instance.PlaySE(SoundType.GetMeat);
+        GoNextFloor();
+    }
     /// <summary>
     /// 次のフロアに降りる
     /// </summary>
     public void GoNextFloor()
     {
-        soundManager.PlayGetMeatSE();
         var targetPosY = transform.position.y + Constant.FLOOR_GAP * -1;
-        gameObject.transform.DOMoveY(targetPosY, 0.1f).
+        gameObject.transform.DOMoveY(targetPosY, 0.25f).
             OnComplete(() => gameManager.ArriveAtNextFloor());
     }
 }
