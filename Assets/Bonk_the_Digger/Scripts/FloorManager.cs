@@ -13,7 +13,7 @@ public class FloorManager : MonoBehaviour
     public int BombCount => bombCount;
     private List<Floor> floorsList = new List<Floor>();
     private float bottomFloorPosY;
-    private int currentFloorNumber = 1;
+    private int currentFloorNumber = 0;
     public int CurrentFloorNumber => currentFloorNumber;
 
     private void Start()
@@ -30,10 +30,10 @@ public class FloorManager : MonoBehaviour
         for (int i = 0; i < Constant.MAX_FLOOR_COUNT; i++)
         {
             var floor = Instantiate(floorPrefab, floorRoot);
-            var offsetY = characterTran.position.y - 1;
+            var offsetY = characterTran.position.y - 0.72f;
             var posY = i * Constant.FLOOR_GAP * -1 + offsetY;
             floor.transform.position = new Vector3(0, posY, 0);
-            floor.SetFloorNumber(i + 1);
+            floor.SetFloorNumber(i);
             floorsList.Add(floor);
         }
         bottomFloorPosY = floorsList[Constant.MAX_FLOOR_COUNT - 1].transform.position.y;
@@ -64,9 +64,9 @@ public class FloorManager : MonoBehaviour
     {
         currentFloorNumber++;
         //Debug.Log($"現在の階層：{currentFloorNumber}");
-        var outsideViewCount = 3;
+        var outsideViewCount = 4;
         // 4フロア目以降になると、順次フロアを上に移動させて使い回す
-        if (currentFloorNumber > outsideViewCount) MoveFloor(currentFloorNumber - outsideViewCount);
+        if (currentFloorNumber >= outsideViewCount) MoveFloor(currentFloorNumber - outsideViewCount);
     }
     /// <summary>
     /// カメラに映らなくなったフロアを初期化して使い回す

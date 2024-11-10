@@ -256,7 +256,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 6568280508905977150, guid: 3f967570b338841edb4a58a6f0db58c7, type: 3}
+  m_Sprite: {fileID: -2820283322511730813, guid: 03ca25be3c43f4c0eb70d8119bfd3b28, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -285,6 +285,9 @@ MonoBehaviour:
   treasure: {fileID: -668424804728290439, guid: 7b2c519f85a9547caae6cb0f2d3b2016, type: 3}
   redScreenFilter: {fileID: 6729960244199331350}
   rateText: {fileID: 86825903617982830}
+  coinPrefab: {fileID: 3491391436632035485, guid: 28925d65ecde644ce90f0084bb273d7e, type: 3}
+  bombPrefab: {fileID: 2970796228150805377, guid: c768ac2f84d704b87bd1750d2b7fece3, type: 3}
+  challengeBoxPrefab: {fileID: 3566257983097065195, guid: 44e289e5894d045daaf5c2b2b000c154, type: 3}
 --- !u!61 &8314460733135432788
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -323,7 +326,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.77, y: 0.73}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -339,33 +342,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7338349962774837716}
     m_Modifications:
-    - target: {fileID: 174380282851170277, guid: f8af0af64fd854b49aa49cabb67e2ea1, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -4557794618738274651, guid: cf2ed8ce5186141b0a14b2f797c7454c, type: 3}
-    - target: {fileID: 174380282851170277, guid: f8af0af64fd854b49aa49cabb67e2ea1, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 174380282851170277, guid: f8af0af64fd854b49aa49cabb67e2ea1, type: 3}
-      propertyPath: m_SortingOrder
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 1940936011197865076, guid: f8af0af64fd854b49aa49cabb67e2ea1, type: 3}
       propertyPath: m_Name
       value: Item
-      objectReference: {fileID: 0}
-    - target: {fileID: 7131249354291638779, guid: f8af0af64fd854b49aa49cabb67e2ea1, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.12499999
-      objectReference: {fileID: 0}
-    - target: {fileID: 7131249354291638779, guid: f8af0af64fd854b49aa49cabb67e2ea1, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.12499999
-      objectReference: {fileID: 0}
-    - target: {fileID: 7131249354291638779, guid: f8af0af64fd854b49aa49cabb67e2ea1, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.12499999
       objectReference: {fileID: 0}
     - target: {fileID: 7131249354291638779, guid: f8af0af64fd854b49aa49cabb67e2ea1, type: 3}
       propertyPath: m_LocalPosition.x

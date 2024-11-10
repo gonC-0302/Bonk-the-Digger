@@ -19,9 +19,9 @@ public class Floor : MonoBehaviour
     public void SetFloorNumber(int floorNumber)
     {
         this.floorNubmer = floorNumber;
-        if (floorNubmer == 1) background.enabled = false;
+        if (floorNubmer == 0) background.enabled = false;
         else background.enabled = true;
-        text.text = $"Floor {floorNubmer}";
+        text.text = $"{floorNubmer}";
     }
 
     /// <summary>

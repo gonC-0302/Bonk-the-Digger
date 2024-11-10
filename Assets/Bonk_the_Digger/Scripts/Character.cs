@@ -9,6 +9,8 @@ public class Character : MonoBehaviour
     private GameManager gameManager;
     [SerializeField]
     private CashManager cashManager;
+    [SerializeField]
+    private Animator anim;
     private int clearCount;
 
     /// <summary>
@@ -21,7 +23,7 @@ public class Character : MonoBehaviour
         var diff = gameObject.transform.position.x - tile.transform.position.x;
         ChangeDirection(diff);
         var targetPosX = tile.transform.position.x;
-        gameObject.transform.DOMoveX(targetPosX, 0.1f).
+        gameObject.transform.DOMoveX(targetPosX, 0.25f).
             OnComplete(() => StartCoroutine(PlayDigAnimation(tile)));
     }
     private void ChangeDirection(float diff)
@@ -40,24 +42,23 @@ public class Character : MonoBehaviour
     {
         SoundManager.instance.PlaySE(SoundType.Dig);
         // TODO: 掘るアニメーション
-        var originPos = gameObject.transform.position;
-        var moveTargetPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 0.5f);
-        transform.DOMove(moveTargetPos, 0.25f)
-            .OnComplete(() => transform.DOMove(originPos, 0.25f)).SetLoops(2,LoopType.Yoyo);
-        tile.transform.DOShakeRotation(0.8f, strength:50, vibrato: 5);
         yield return new WaitForSeconds(1f);
-        tile.ShowItem();
+        //tile.ShowItem();
         switch (tile.Type)
         {
             case TileType.Normal:
-                // TODO: 取得アニメーション?(何が出たか見せる時間必要？)
+                tile.SpawnCoin();
                 yield return new WaitForSeconds(0.75f);
                 GetItem(tile);
                 yield break;
             case TileType.Bomb:
-                tile.ExplodeBomb();
+                yield return StartCoroutine(tile.SpawnBomb());
+                gameManager.Lose();
+                anim.Play("Lose");
+                //tile.ExplodeBomb();
                 yield break;
             case TileType.Bonus:
+                tile.SpawnChallengeBox();
                 gameManager.StartBonusTap();
                 yield break;
         }
@@ -65,7 +66,6 @@ public class Character : MonoBehaviour
 
     public void GetItem(Tile tile)
     {
-        tile.HideItem();
         clearCount++;
         cashManager.EvaluateCurrentCash(clearCount);
         SoundManager.instance.PlaySE(SoundType.GetMeat);
@@ -73,13 +73,12 @@ public class Character : MonoBehaviour
     }
     public IEnumerator GetTreasureBox(Tile tile)
     {
-        //tile.HideItem();
         clearCount++;
         float random = Random.Range(0.5f, 4f);
         string randomStr = random.ToString("f1");
         cashManager.GetBonus(float.Parse(randomStr));
         yield return StartCoroutine(tile.GetBonus(randomStr));
-        cashManager.EvaluateCurrentCash(clearCount);
+        //cashManager.EvaluateCurrentCash(clearCount);
         SoundManager.instance.PlaySE(SoundType.GetMeat);
         GoNextFloor();
     }
@@ -91,5 +90,10 @@ public class Character : MonoBehaviour
         var targetPosY = transform.position.y + Constant.FLOOR_GAP * -1;
         gameObject.transform.DOMoveY(targetPosY, 0.25f).
             OnComplete(() => gameManager.ArriveAtNextFloor());
+    }
+
+    public void PlayWinAnimation()
+    {
+        anim.Play("Win");
     }
 }

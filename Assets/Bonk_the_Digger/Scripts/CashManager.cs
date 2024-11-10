@@ -10,7 +10,10 @@ public class CashManager : MonoBehaviour
     private FloorManager floorManager;
     [SerializeField]
     private CashBackRateDataSO dataSO;
+    [SerializeField]
+    private TextMeshProUGUI confirmedBetAmountText;
     private int currentCash;
+    public int CurrentCash => currentCash;
     private int betValue;
     private float currentRate;
 
@@ -21,6 +24,7 @@ public class CashManager : MonoBehaviour
     public void SetBet(int betValue)
     {
         this.betValue = betValue;
+        confirmedBetAmountText.text = betValue.ToString("N0");
         currentRate = 1;
         Debug.Log($"賭け金を{betValue}で確定");
         currentCash = betValue;

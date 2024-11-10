@@ -55,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -226,7 +226,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -235,7 +235,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ani_bonk_lose_0004_0: -4692788366026984992
+      ani_bonk_lose_0004_1: -3391209022072692476
+      ani_bonk_lose_0004_2: 7029526349692065887
+      ani_bonk_lose_0004_3: -291572590515713412
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

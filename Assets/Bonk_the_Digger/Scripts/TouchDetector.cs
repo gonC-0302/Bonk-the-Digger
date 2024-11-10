@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening.Core.Easing;
 using UnityEngine;
 
 public class TouchDetector : MonoBehaviour
@@ -46,6 +47,8 @@ public class TouchDetector : MonoBehaviour
                         SoundManager.instance.PlaySE(SoundType.TapTreasureBox);
                         if (tile.TapCount > 10)
                         {
+                            gameManager.ChangeToMoveCharacterState();
+                            tile.HideChallengeBox();
                             StartCoroutine(character.GetTreasureBox(tile));
                         }
                     }
