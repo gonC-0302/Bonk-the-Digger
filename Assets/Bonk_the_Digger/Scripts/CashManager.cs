@@ -24,7 +24,7 @@ public class CashManager : MonoBehaviour
     public void SetBet(int betValue)
     {
         this.betValue = betValue;
-        confirmedBetAmountText.text = betValue.ToString("N0");
+        confirmedBetAmountText.text = betValue.ToString();
         currentRate = 1;
         Debug.Log($"賭け金を{betValue}で確定");
         currentCash = betValue;

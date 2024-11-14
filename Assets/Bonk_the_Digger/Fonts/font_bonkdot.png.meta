@@ -810,7 +810,34 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      font_bonkdot_0: 363604785678635665
+      font_bonkdot_1: 4648461472988338902
+      font_bonkdot_10: -8277882778203434756
+      font_bonkdot_11: -4630900602283645488
+      font_bonkdot_12: 4366508872384328579
+      font_bonkdot_13: 2440108892074751193
+      font_bonkdot_14: 672975946133635389
+      font_bonkdot_15: -8642598372797532879
+      font_bonkdot_16: 755286413635962637
+      font_bonkdot_17: 229958739126960545
+      font_bonkdot_18: 8252787041621557717
+      font_bonkdot_19: 8331223402189927658
+      font_bonkdot_2: -5816492478586757832
+      font_bonkdot_20: -7910082257301965964
+      font_bonkdot_21: -8725803678733762191
+      font_bonkdot_22: 3915452953899140436
+      font_bonkdot_23: -2169562828346187596
+      font_bonkdot_24: 70548026680583870
+      font_bonkdot_25: 6782866967705993177
+      font_bonkdot_26: -5112145177678394112
+      font_bonkdot_3: -4577536928767683725
+      font_bonkdot_4: -3129273989963207334
+      font_bonkdot_5: -1955351956334880592
+      font_bonkdot_6: -3841001419933714030
+      font_bonkdot_7: -4085777387374904182
+      font_bonkdot_8: 5782119115384134699
+      font_bonkdot_9: -1881865675666027388
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

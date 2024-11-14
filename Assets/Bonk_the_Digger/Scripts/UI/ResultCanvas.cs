@@ -43,6 +43,6 @@ public class ResultCanvas : MonoBehaviour
 
     private void UpdateRewardAmountText(int rewardAmount)
     {
-        rewardAmountText.text = rewardAmount.ToString("N0");
+        rewardAmountText.text = rewardAmount.ToString();
     }
 }

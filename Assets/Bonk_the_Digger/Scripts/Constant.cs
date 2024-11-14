@@ -5,7 +5,7 @@ using UnityEngine;
 public class Constant : MonoBehaviour
 {
     // Bet
-    public const int MAX_BET_DIGIT = 9;
+    public const int MAX_BET_DIGIT = 7;
 
     // GameStage
     public const float FLOOR_GAP = 1.55f;

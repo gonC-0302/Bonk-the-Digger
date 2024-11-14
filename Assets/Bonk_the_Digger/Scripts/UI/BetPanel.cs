@@ -53,14 +53,14 @@ public class BetPanel : MonoBehaviour
     {
         float halfValue = Mathf.Clamp(betValueCache * 0.5f, 0, MAX_BET_AMOUNT);
         betValueCache = (int)halfValue;
-        _inputField.text = betValueCache.ToString("N0");
+        _inputField.text = betValueCache.ToString();
     }
 
     private void OnClickDoubleButton()
     {
         int doubleValue = Mathf.Clamp(betValueCache * 2,0, MAX_BET_AMOUNT);
         betValueCache = doubleValue;
-        _inputField.text = betValueCache.ToString("N0");
+        _inputField.text = betValueCache.ToString();
     }
 
     private void OnSelect(string betValue)
@@ -72,18 +72,18 @@ public class BetPanel : MonoBehaviour
     {
         int maxValue = MAX_BET_AMOUNT;
         betValueCache = maxValue;
-        _inputField.text = betValueCache.ToString("N0");
+        _inputField.text = betValueCache.ToString();
     }
 
     private void OnValueChanged(string betValueStr)
     {
         if (string.IsNullOrEmpty(betValueStr))
         {
-            _inputField.text = "0";
+            _inputField.text = "";
         }
         if (betValueStr.StartsWith("0"))
         {
-            _inputField.text = "0";
+            _inputField.text = "";
         }
 
         // 桁数上限
@@ -114,7 +114,7 @@ public class BetPanel : MonoBehaviour
         inputBackground.enabled = false;
         if (string.IsNullOrEmpty(betValueString)) return;
         int betAmount = Mathf.Clamp(int.Parse(betValueString),0, MAX_BET_AMOUNT);
-        _inputField.text = betAmount.ToString("N0");
+        _inputField.text = betAmount.ToString();
         betValueCache = betAmount;
     }
     /// <summary>
