@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      jewelry_round_lightblue_0: -668424804728290439
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

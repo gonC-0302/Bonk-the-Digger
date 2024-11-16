@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      top_button_bomb_off_0: 8738257764528188715
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

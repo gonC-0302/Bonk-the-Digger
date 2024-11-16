@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         currentState = GameState.Win;
         cashOutPanel.CloseCashOutPanel();
         appCanvas.ShowHeaderItems();
-        var rewardAmount = cashManager.CurrentCash;
+        var rewardAmount = Mathf.Clamp(cashManager.CurrentCash,0,9999999);
         resultPanel.ActivateWinPanel(rewardAmount);
     }
 

@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bonk_popup_cashout_0: 5881437574730832142
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

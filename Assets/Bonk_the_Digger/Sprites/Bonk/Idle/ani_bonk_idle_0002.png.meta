@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ani_bonk_idle_0002_0: -3781554607016682048
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      game_button_cashout_inactive_0: -6148086503705447812
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

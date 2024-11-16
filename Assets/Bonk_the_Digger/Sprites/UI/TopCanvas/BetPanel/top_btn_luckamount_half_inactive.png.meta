@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      top_btn_luckamount_half_inactive_0: 5310429246369424642
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

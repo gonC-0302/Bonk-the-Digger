@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Bonk_Result_win_0: 7870131852190648292
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

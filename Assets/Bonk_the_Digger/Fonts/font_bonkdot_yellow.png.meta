@@ -810,7 +810,34 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      font_bonkdot_yellow_0: -2516294778510578022
+      font_bonkdot_yellow_1: -5207668920083741632
+      font_bonkdot_yellow_10: -7279470006379914207
+      font_bonkdot_yellow_11: 6674560550658723866
+      font_bonkdot_yellow_12: -1734214616415087741
+      font_bonkdot_yellow_13: 9143694647326984093
+      font_bonkdot_yellow_14: -6160768022088674520
+      font_bonkdot_yellow_15: 6767431634222026887
+      font_bonkdot_yellow_16: -8999392951126408630
+      font_bonkdot_yellow_17: 5051738150920306504
+      font_bonkdot_yellow_18: -2175687613316483838
+      font_bonkdot_yellow_19: 3527925125192905524
+      font_bonkdot_yellow_2: -7011508246637583170
+      font_bonkdot_yellow_20: 4322675739209095251
+      font_bonkdot_yellow_21: -1053056292030896777
+      font_bonkdot_yellow_22: 7009704999340488114
+      font_bonkdot_yellow_23: 5797905247504040159
+      font_bonkdot_yellow_24: -3488555113038188730
+      font_bonkdot_yellow_25: -3369775100251974564
+      font_bonkdot_yellow_26: -3020174615058753697
+      font_bonkdot_yellow_3: -3676008650670381943
+      font_bonkdot_yellow_4: -4736510553531336091
+      font_bonkdot_yellow_5: -7738639036088675781
+      font_bonkdot_yellow_6: -3172704594451814773
+      font_bonkdot_yellow_7: -3083413810325313768
+      font_bonkdot_yellow_8: 527277025760344370
+      font_bonkdot_yellow_9: 7860976766441682723
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
