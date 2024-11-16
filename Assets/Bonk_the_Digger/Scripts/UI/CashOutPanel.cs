@@ -51,6 +51,7 @@ public class CashOutPanel : MonoBehaviour
     private void OnClickConfirmButton()
     {
         popUp.SetActive(false);
+        filter.SetActive(false);
         manager.Win();
         character.PlayWinAnimation();
     }
