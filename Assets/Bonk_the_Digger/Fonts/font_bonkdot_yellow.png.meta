@@ -1,0 +1,818 @@
+fileFormatVersion: 2
+guid: bdcfdafcacb4b4e6194a86b7047be462
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2516294778510578022
+    second: font_bonkdot_yellow_0
+  - first:
+      213: -5207668920083741632
+    second: font_bonkdot_yellow_1
+  - first:
+      213: -7011508246637583170
+    second: font_bonkdot_yellow_2
+  - first:
+      213: -3676008650670381943
+    second: font_bonkdot_yellow_3
+  - first:
+      213: -4736510553531336091
+    second: font_bonkdot_yellow_4
+  - first:
+      213: -7738639036088675781
+    second: font_bonkdot_yellow_5
+  - first:
+      213: -3172704594451814773
+    second: font_bonkdot_yellow_6
+  - first:
+      213: -3083413810325313768
+    second: font_bonkdot_yellow_7
+  - first:
+      213: 527277025760344370
+    second: font_bonkdot_yellow_8
+  - first:
+      213: 7860976766441682723
+    second: font_bonkdot_yellow_9
+  - first:
+      213: -7279470006379914207
+    second: font_bonkdot_yellow_10
+  - first:
+      213: 6674560550658723866
+    second: font_bonkdot_yellow_11
+  - first:
+      213: -1734214616415087741
+    second: font_bonkdot_yellow_12
+  - first:
+      213: 9143694647326984093
+    second: font_bonkdot_yellow_13
+  - first:
+      213: -6160768022088674520
+    second: font_bonkdot_yellow_14
+  - first:
+      213: 6767431634222026887
+    second: font_bonkdot_yellow_15
+  - first:
+      213: -8999392951126408630
+    second: font_bonkdot_yellow_16
+  - first:
+      213: 5051738150920306504
+    second: font_bonkdot_yellow_17
+  - first:
+      213: -2175687613316483838
+    second: font_bonkdot_yellow_18
+  - first:
+      213: 3527925125192905524
+    second: font_bonkdot_yellow_19
+  - first:
+      213: 4322675739209095251
+    second: font_bonkdot_yellow_20
+  - first:
+      213: -1053056292030896777
+    second: font_bonkdot_yellow_21
+  - first:
+      213: 7009704999340488114
+    second: font_bonkdot_yellow_22
+  - first:
+      213: 5797905247504040159
+    second: font_bonkdot_yellow_23
+  - first:
+      213: -3488555113038188730
+    second: font_bonkdot_yellow_24
+  - first:
+      213: -3369775100251974564
+    second: font_bonkdot_yellow_25
+  - first:
+      213: -3020174615058753697
+    second: font_bonkdot_yellow_26
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 439
+        width: 56
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9ee4b81b33541dd0800000000000000
+      internalID: -2516294778510578022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_1
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 439
+        width: 28
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 044019665b4aab7b0800000000000000
+      internalID: -5207668920083741632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_2
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 439
+        width: 56
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb4e173f56e12be90800000000000000
+      internalID: -7011508246637583170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_3
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 439
+        width: 56
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9846789cb913cfcc0800000000000000
+      internalID: -3676008650670381943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_4
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 439
+        width: 56
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56a30e52fb8844eb0800000000000000
+      internalID: -4736510553531336091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_5
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 439
+        width: 56
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3296f83cc4da9490800000000000000
+      internalID: -7738639036088675781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_6
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 439
+        width: 56
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8623762bf948f3d0800000000000000
+      internalID: -3172704594451814773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_7
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 361
+        width: 56
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 817a604e9738535d0800000000000000
+      internalID: -3083413810325313768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_8
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 361
+        width: 56
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2397baa49a3415700800000000000000
+      internalID: 527277025760344370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_9
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 361
+        width: 56
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 327fa5748bcc71d60800000000000000
+      internalID: 7860976766441682723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_10
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 401
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12c5d94f8902afa90800000000000000
+      internalID: -7279470006379914207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_11
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 407
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1059dd157dc0ac50800000000000000
+      internalID: 6674560550658723866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_12
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 361
+        width: 44
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 383d940aef4dee7e0800000000000000
+      internalID: -1734214616415087741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_13
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 383
+        width: 56
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d97c09c16dde4ee70800000000000000
+      internalID: 9143694647326984093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_14
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 387
+        width: 16
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82391d3002e808aa0800000000000000
+      internalID: -6160768022088674520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_15
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 361
+        width: 44
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7809b87473fbaed50800000000000000
+      internalID: 6767431634222026887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_16
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 375
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a42c4f1bacbbb1380800000000000000
+      internalID: -8999392951126408630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_17
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 362
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84fb4ef35116b1640800000000000000
+      internalID: 5051738150920306504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_18
+      rect:
+        serializedVersion: 2
+        x: 361
+        y: 361
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 205bd0a94a76ec1e0800000000000000
+      internalID: -2175687613316483838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_19
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 361
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4337c49a535b5f030800000000000000
+      internalID: 3527925125192905524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_20
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 283
+        width: 30
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 358d1caaeaa3dfb30800000000000000
+      internalID: 4322675739209095251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_21
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 283
+        width: 30
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7752209b1eac261f0800000000000000
+      internalID: -1053056292030896777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_22
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 294
+        width: 46
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b538f1de89774160800000000000000
+      internalID: 7009704999340488114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_23
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 310
+        width: 46
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd00ade9a1c467050800000000000000
+      internalID: 5797905247504040159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_24
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 289
+        width: 56
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64f6cfb9b99269fc0800000000000000
+      internalID: -3488555113038188730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_25
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 283
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c54568076672c31d0800000000000000
+      internalID: -3369775100251974564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: font_bonkdot_yellow_26
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 277
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5755cd603f2616d0800000000000000
+      internalID: -3020174615058753697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

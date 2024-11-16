@@ -279,7 +279,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c854c5d664c43d0a904055c4d094ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileSpr: {fileID: 6849848752109210647}
+  tileSpriteRender: {fileID: 6849848752109210647}
+  tileSpr: {fileID: -2820283322511730813, guid: 03ca25be3c43f4c0eb70d8119bfd3b28, type: 3}
+  tileSpr_digged: {fileID: 4842509311293170229, guid: d0d0d5be45bfb454e9494aaacb213441, type: 3}
   itemSpr: {fileID: 427997148975462239}
   explosionEffect: {fileID: 439226438843441342, guid: c5e504d988e944b2285098b8fcb1a552, type: 3}
   treasure: {fileID: -668424804728290439, guid: 7b2c519f85a9547caae6cb0f2d3b2016, type: 3}

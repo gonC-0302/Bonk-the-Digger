@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84a92b25f83d49b9bc132d206b370281, type: 3}
-  m_Name: font_bonkdot
+  m_Name: font_bonkdot_white
   m_EditorClassIdentifier: 
   m_Version: 1.1.0
   m_FaceInfo:
@@ -36,7 +36,7 @@ MonoBehaviour:
     m_StrikethroughThickness: 0
     m_TabWidth: 0
   m_Material: {fileID: 8024782501971236722}
-  spriteSheet: {fileID: 2800000, guid: bdcfdafcacb4b4e6194a86b7047be462, type: 3}
+  spriteSheet: {fileID: 2800000, guid: 128286f99e0904166a180adbd4d6203b, type: 3}
   m_SpriteCharacterTable:
   - m_ElementType: 2
     m_Unicode: 48
@@ -124,7 +124,7 @@ MonoBehaviour:
     m_Scale: 1
     m_Name: font_bonkdot_21
   - m_ElementType: 2
-    m_Unicode: 46
+    m_Unicode: 65534
     m_GlyphIndex: 25
     m_Scale: 1
     m_Name: font_bonkdot_25
@@ -532,7 +532,7 @@ MonoBehaviour:
       m_Height: 56
       m_HorizontalBearingX: 5
       m_HorizontalBearingY: 45
-      m_HorizontalAdvance: 70
+      m_HorizontalAdvance: 56
     m_GlyphRect:
       m_X: 269
       m_Y: 289
@@ -579,14 +579,14 @@ MonoBehaviour:
       m_Width: 16
       m_Height: 16
       m_HorizontalBearingX: 5
-      m_HorizontalBearingY: 10
-      m_HorizontalAdvance: 28
+      m_HorizontalBearingY: 57
+      m_HorizontalAdvance: 16
     m_GlyphRect:
       m_X: 339
       m_Y: 283
       m_Width: 16
       m_Height: 16
-    m_Scale: 0.25
+    m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
     sprite: {fileID: 6782866967705993177, guid: 128286f99e0904166a180adbd4d6203b, type: 3}
@@ -632,7 +632,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: bdcfdafcacb4b4e6194a86b7047be462, type: 3}
+        m_Texture: {fileID: 2800000, guid: 128286f99e0904166a180adbd4d6203b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []

@@ -14,7 +14,9 @@ public enum TileType
 public class Tile : MonoBehaviour
 {
     [SerializeField]
-    private SpriteRenderer tileSpr;
+    private SpriteRenderer tileSpriteRender;
+    [SerializeField]
+    private Sprite tileSpr, tileSpr_digged;
     [SerializeField]
     private SpriteRenderer itemSpr;
     [SerializeField]
@@ -39,7 +41,8 @@ public class Tile : MonoBehaviour
         this.type = type;
         tapCount = 0;
         ResetRateText();
-        tileSpr.enabled = true;
+        tileSpriteRender.sprite = tileSpr;
+        tileSpriteRender.enabled = true;
         //switch (type)
         //{
         //    case TileType.Normal:
@@ -110,14 +113,16 @@ public class Tile : MonoBehaviour
 
     public void SpawnCoin()
     {
-        tileSpr.enabled = false;
+        //tileSpriteRender.enabled = false;
+        tileSpriteRender.sprite = tileSpr_digged;
         var coin =  Instantiate(coinPrefab, transform);
         Destroy(coin, 2f);
     }
 
     public IEnumerator SpawnBomb()
     {
-        tileSpr.enabled = false;
+        //tileSpriteRender.enabled = false;
+        tileSpriteRender.sprite = tileSpr_digged;
         Instantiate(bombPrefab, transform);
         yield return new WaitForSeconds(2f);
         //itemSpr.sprite = explosionEffect;
@@ -128,7 +133,8 @@ public class Tile : MonoBehaviour
 
     public void SpawnChallengeBox()
     {
-        tileSpr.enabled = false;
+        //tileSpriteRender.enabled = false;
+        tileSpriteRender.sprite = tileSpr_digged;
         challengeBox = Instantiate(challengeBoxPrefab, transform);
     }
     private void HideChallengeBoxGuide()
