@@ -6,7 +6,7 @@ public class CashOutPanel : MonoBehaviour
     [SerializeField]
     private Button cashOutButton,cancelButton,confirmButton;
     [SerializeField]
-    private GameObject popUp;
+    private GameObject popUp,filter;
     [SerializeField]
     private GameManager manager;
     [SerializeField]
@@ -36,10 +36,12 @@ public class CashOutPanel : MonoBehaviour
     private void OpenPopUp()
     {
         popUp.SetActive(true);
+        filter.SetActive(true);
     }
     private void ClosePopUp()
     {
         popUp.SetActive(false);
+        filter.SetActive(false);
     }
     private void OnClickCancelButton()
     {
@@ -48,6 +50,7 @@ public class CashOutPanel : MonoBehaviour
     }
     private void OnClickConfirmButton()
     {
+        popUp.SetActive(false);
         manager.Win();
         character.PlayWinAnimation();
     }
