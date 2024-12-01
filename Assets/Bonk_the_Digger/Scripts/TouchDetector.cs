@@ -15,9 +15,9 @@ public class TouchDetector : MonoBehaviour
 
     void Update()
     {
-        switch (gameManager.CurrentState)
+        switch (gameManager.CurrentPhase)
         {
-            case GameState.SelectTile:
+            case GamePhase.SelectTile:
                 if (Input.GetMouseButtonDown(0))
                 {
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -33,7 +33,7 @@ public class TouchDetector : MonoBehaviour
                     }
                 }
                 break;
-            case GameState.BonusTap:
+            case GamePhase.BonusTap:
                 if (Input.GetMouseButtonDown(0))
                 {
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

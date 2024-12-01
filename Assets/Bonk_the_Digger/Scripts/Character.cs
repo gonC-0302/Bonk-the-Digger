@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
-using DG.Tweening.Core.Easing;
 
 public class Character : MonoBehaviour
 {
@@ -49,13 +48,12 @@ public class Character : MonoBehaviour
             case TileType.Normal:
                 tile.SpawnCoin();
                 yield return new WaitForSeconds(0.75f);
-                GetItem(tile);
+                GetCoin();
                 yield break;
             case TileType.Bomb:
                 yield return StartCoroutine(tile.SpawnBomb());
                 gameManager.Lose();
                 anim.Play("Lose");
-                //tile.ExplodeBomb();
                 yield break;
             case TileType.Bonus:
                 tile.SpawnChallengeBox();
@@ -64,7 +62,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void GetItem(Tile tile)
+    public void GetCoin()
     {
         clearCount++;
         cashManager.EvaluateCurrentCash(clearCount);
@@ -78,7 +76,6 @@ public class Character : MonoBehaviour
         string randomStr = random.ToString("f1");
         cashManager.GetBonus(float.Parse(randomStr));
         yield return StartCoroutine(tile.GetBonus(randomStr));
-        //cashManager.EvaluateCurrentCash(clearCount);
         SoundManager.instance.PlaySE(SoundType.GetMeat);
         GoNextFloor();
     }

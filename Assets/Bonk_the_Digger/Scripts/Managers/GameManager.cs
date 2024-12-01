@@ -1,5 +1,5 @@
 using UnityEngine;
-public enum GameState
+public enum GamePhase
 {
     Bet,            // 賭け金設定フェーズ
     SelectTile,     // タイル選択フェーズ
@@ -24,17 +24,17 @@ public class GameManager : MonoBehaviour
     private ResultCanvas resultPanel;
     [SerializeField]
     private AppCanvas appCanvas;
-    private GameState currentState = GameState.Bet;
-    public GameState CurrentState => currentState;
+    private GamePhase currentPhase = GamePhase.Bet;
+    public GamePhase CurrentPhase => currentPhase;
     
     /// <summary>
     /// 賭け金入力後、ゲームの準備フェーズ
     /// </summary>
     public void StartGame()
     {
-        appCanvas.HideHeaderItems();
+        appCanvas.HideHeaderInfomations();
         tutorial.SetActive(true);
-        currentState = GameState.SelectTile;
+        currentPhase = GamePhase.SelectTile;
         cashOutPanel.ActivateCashOutButton();
     }
     /// <summary>
@@ -43,11 +43,11 @@ public class GameManager : MonoBehaviour
     public void ChangeToMoveCharacterState()
     {
         cashOutPanel.DeactivateCashOutButton();
-        currentState = GameState.MoveCharacter;
+        currentPhase = GamePhase.MoveCharacter;
     }
     public void StartBonusTap()
     {
-        currentState = GameState.BonusTap;
+        currentPhase = GamePhase.BonusTap;
     }
     /// <summary>
     /// キャラクター移動完了後、タイル選択フェーズ
@@ -58,35 +58,35 @@ public class GameManager : MonoBehaviour
         floorManager.UpdateFloorNumber();
         // 現在のキャッシュを増加
         //cashManager.IncreaseCashBack(floorManager.CurrentFloorNumber);
-        currentState = GameState.SelectTile;
+        currentPhase = GamePhase.SelectTile;
         cashOutPanel.ActivateCashOutButton();
     }
 
     public void Win()
     {
-        currentState = GameState.Win;
+        currentPhase = GamePhase.Win;
         cashOutPanel.CloseCashOutPanel();
-        appCanvas.ShowHeaderItems();
+        appCanvas.ShowHeaderInfomations();
         var rewardAmount = Mathf.Clamp(cashManager.CurrentCash,0,9999999);
         resultPanel.ActivateWinPanel(rewardAmount);
     }
 
     public void Lose()
     {
-        currentState = GameState.Lose;
+        currentPhase = GamePhase.Lose;
         cashOutPanel.CloseCashOutPanel();
-        appCanvas.ShowHeaderItems();
+        appCanvas.ShowHeaderInfomations();
         resultPanel.ActivateLosePanel();
     }
 
     public void PauseGame()
     {
-        if (currentState != GameState.SelectTile) return;
-        currentState = GameState.Pause;
+        if (currentPhase != GamePhase.SelectTile) return;
+        currentPhase = GamePhase.Pause;
     }
     public void ResumeGame()
     {
-        if (currentState != GameState.Pause) return;
-        currentState = GameState.SelectTile;
+        if (currentPhase != GamePhase.Pause) return;
+        currentPhase = GamePhase.SelectTile;
     }
 }

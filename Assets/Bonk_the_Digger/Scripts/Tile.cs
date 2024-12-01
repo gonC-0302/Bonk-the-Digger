@@ -43,26 +43,25 @@ public class Tile : MonoBehaviour
         ResetRateText();
         tileSpriteRender.sprite = tileSpr;
         tileSpriteRender.enabled = true;
-        //switch (type)
-        //{
-        //    case TileType.Normal:
-        //        tileSpr.color = Color.white;
-        //        break;
-        //    case TileType.Bomb:
-        //        tileSpr.color = Color.red;
-        //        break;
-        //    case TileType.Bonus:
-        //        tileSpr.color = Color.green;
-
-        //        break;
-        //}
+        switch (type)
+        {
+            case TileType.Normal:
+                tileSpriteRender.color = Color.white;
+                break;
+            case TileType.Bomb:
+                tileSpriteRender.color = Color.red;
+                break;
+            case TileType.Bonus:
+                tileSpriteRender.color = Color.green;
+                break;
+        }
     }
     public void UpdateTapCount()
     {
         tapCount++;
         if (tapCount == 1) HideChallengeBoxGuide();
-        gameObject.transform.DOScale(1.4f, 0.1f)
-            .OnComplete(() => gameObject.transform.DOScale(1.2f,0.1f));
+        challengeBox.transform.DOScale(1.2f, 0.1f)
+            .OnComplete(() => challengeBox.transform.DOScale(1.0f,0.1f).SetLink(challengeBox)).SetLink(challengeBox);
     }
     public void ShowRate(string rateStr)
     {
@@ -78,23 +77,6 @@ public class Tile : MonoBehaviour
         rateText.transform.localScale = Vector3.one;
         rateText.color = Color.white;
     }
-    //public void ShowItem()
-    //{
-    //    tileSpr.enabled = false;
-    //    switch (type)
-    //    {
-    //        case TileType.Normal:
-    //            SpawnCoin();
-    //            break;
-    //        case TileType.Bomb:
-    //            SpawnBomb();
-    //            break;
-    //        case TileType.Bonus:
-    //            //tileSpr.color = Color.yellow;
-    //            break;
-    //    }
-    //    if (type == TileType.Bonus) SoundManager.instance.PlaySE(SoundType.ShowTreasureBox);
-    //}
     public IEnumerator GetBonus(string bonusValueStr)
     {
         itemSpr.sprite = treasure;
@@ -103,14 +85,6 @@ public class Tile : MonoBehaviour
         itemSpr.enabled = false;
         ShowRate(bonusValueStr);
     }
-    /// <summary>
-    /// アイテム画像を非表示
-    /// </summary>
-    //public void HideItem()
-    //{
-    //    itemSpr.enabled = false;
-    //}
-
     public void SpawnCoin()
     {
         //tileSpriteRender.enabled = false;
@@ -118,22 +92,14 @@ public class Tile : MonoBehaviour
         var coin =  Instantiate(coinPrefab, transform);
         Destroy(coin, 2f);
     }
-
     public IEnumerator SpawnBomb()
     {
-        //tileSpriteRender.enabled = false;
         tileSpriteRender.sprite = tileSpr_digged;
         Instantiate(bombPrefab, transform);
         yield return new WaitForSeconds(2f);
-        //itemSpr.sprite = explosionEffect;
-        //itemSpr.transform.DOScale(0.4f, 0.1f);
-        //redScreenFilter.enabled = true;
-        //redScreenFilter.transform.DOScale(200, 0.5f);
     }
-
     public void SpawnChallengeBox()
     {
-        //tileSpriteRender.enabled = false;
         tileSpriteRender.sprite = tileSpr_digged;
         challengeBox = Instantiate(challengeBoxPrefab, transform);
     }

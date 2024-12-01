@@ -5,12 +5,12 @@ public class AppCanvas : MonoBehaviour
     [SerializeField]
     private GameObject headerItems;
 
-    public void ShowHeaderItems()
+    public void ShowHeaderInfomations()
     {
         headerItems.SetActive(true);
     }
 
-    public void HideHeaderItems()
+    public void HideHeaderInfomations()
     {
         headerItems.SetActive(false);
     }
