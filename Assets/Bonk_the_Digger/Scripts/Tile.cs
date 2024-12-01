@@ -45,18 +45,18 @@ public class Tile : MonoBehaviour
         ResetRateText();
         tileSpriteRender.sprite = tileSpr;
         tileSpriteRender.enabled = true;
-        switch (type)
-        {
-            case TileType.Normal:
-                tileSpriteRender.color = Color.white;
-                break;
-            case TileType.Bomb:
-                tileSpriteRender.color = Color.red;
-                break;
-            case TileType.Bonus:
-                tileSpriteRender.color = Color.green;
-                break;
-        }
+        //switch (type)
+        //{
+        //    case TileType.Normal:
+        //        tileSpriteRender.color = Color.white;
+        //        break;
+        //    case TileType.Bomb:
+        //        tileSpriteRender.color = Color.red;
+        //        break;
+        //    case TileType.Bonus:
+        //        tileSpriteRender.color = Color.green;
+        //        break;
+        //}
     }
     public void UpdateTapCount()
     {
