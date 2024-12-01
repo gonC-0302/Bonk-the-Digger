@@ -18,8 +18,6 @@ public class Tile : MonoBehaviour
     [SerializeField]
     private Sprite tileSpr, tileSpr_digged;
     [SerializeField]
-    private SpriteRenderer itemSpr;
-    [SerializeField]
     private Sprite explosionEffect,treasure;
     [SerializeField]
     private SpriteRenderer redScreenFilter;
@@ -28,6 +26,10 @@ public class Tile : MonoBehaviour
     [SerializeField]
     private GameObject coinPrefab,bombPrefab,challengeBoxPrefab;
     private GameObject challengeBox;
+    [SerializeField]
+    private GameObject smokePrefab;
+    [SerializeField]
+    private GameObject jewerlyPrefab,bonePrefab;
     private int floorNumber;
     public int FloorNumber => floorNumber;
     private TileType type;
@@ -63,11 +65,12 @@ public class Tile : MonoBehaviour
         challengeBox.transform.DOScale(1.2f, 0.1f)
             .OnComplete(() => challengeBox.transform.DOScale(1.0f,0.1f).SetLink(challengeBox)).SetLink(challengeBox);
     }
-    public void ShowRate(string rateStr)
+    public IEnumerator ShowRate(string rateStr)
     {
         rateText.enabled = true;
         rateText.text = $"x{rateStr}";
-        rateText.transform.DOScale(2f, 1f);
+        rateText.transform.DOScale(2f, 0.25f).OnComplete(() => rateText.transform.DOScale(1f, 0.25f));
+        yield return new WaitForSeconds(2f);
         rateText.DOFade(0, 1f);
     }
     private void ResetRateText()
@@ -77,17 +80,30 @@ public class Tile : MonoBehaviour
         rateText.transform.localScale = Vector3.one;
         rateText.color = Color.white;
     }
-    public IEnumerator GetBonus(string bonusValueStr)
+    public IEnumerator PlayBonusAnimation(string bonusValueStr)
     {
-        itemSpr.sprite = treasure;
-        itemSpr.transform.DOScale(0.2f, 0.1f);
+        var smoke = Instantiate(smokePrefab, transform);
         yield return new WaitForSeconds(1f);
-        itemSpr.enabled = false;
-        ShowRate(bonusValueStr);
+        GameObject bonusItem;
+        float bonusValue = float.Parse(bonusValueStr);
+        if(bonusValue >= 1)
+        {
+            bonusItem = Instantiate(jewerlyPrefab, transform);
+            rateText.color = Color.yellow;
+        }
+        else
+        {
+            bonusItem = Instantiate(bonePrefab, transform);
+            rateText.color = Color.gray;
+
+        }
+        yield return new WaitForSeconds(2f);
+        Destroy(smoke);
+        Destroy(bonusItem);
+        StartCoroutine(ShowRate(bonusValueStr));
     }
     public void SpawnCoin()
     {
-        //tileSpriteRender.enabled = false;
         tileSpriteRender.sprite = tileSpr_digged;
         var coin =  Instantiate(coinPrefab, transform);
         Destroy(coin, 2f);
@@ -113,22 +129,4 @@ public class Tile : MonoBehaviour
         if (challengeBox == null) return;
         Destroy(challengeBox);
     }
-
-    /// <summary>
-    /// 爆弾を爆発させる
-    /// </summary>
-    //public void ExplodeBomb()
-    //{
-    //    Debug.Log($"爆弾!!!!!!!!!!!!!!");
-    //    itemSpr.transform.DOScale(0.15f, 0.05f).SetLoops(10, LoopType.Yoyo)
-    //        .OnComplete(() =>
-    //        {
-    //            SoundManager.instance.StopBGM();
-    //            SoundManager.instance.PlaySE(SoundType.Explosion);
-    //            //itemSpr.sprite = explosionEffect;
-    //            //itemSpr.transform.DOScale(0.4f, 0.1f);
-    //            //redScreenFilter.enabled = true;
-    //            //redScreenFilter.transform.DOScale(200, 0.5f);
-    //        });
-    //}
 }

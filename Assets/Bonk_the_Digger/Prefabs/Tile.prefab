@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: -8740644249047001148, guid: fc21ef3536eea4e04868db0808df0d23, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -104,8 +104,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: x 2
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: fc21ef3536eea4e04868db0808df0d23, type: 2}
+  m_sharedMaterial: {fileID: -8740644249047001148, guid: fc21ef3536eea4e04868db0808df0d23, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -129,8 +129,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 3
-  m_fontSizeBase: 3
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 0.25}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -282,7 +282,6 @@ MonoBehaviour:
   tileSpriteRender: {fileID: 6849848752109210647}
   tileSpr: {fileID: -2820283322511730813, guid: 03ca25be3c43f4c0eb70d8119bfd3b28, type: 3}
   tileSpr_digged: {fileID: 4842509311293170229, guid: d0d0d5be45bfb454e9494aaacb213441, type: 3}
-  itemSpr: {fileID: 427997148975462239}
   explosionEffect: {fileID: 439226438843441342, guid: c5e504d988e944b2285098b8fcb1a552, type: 3}
   treasure: {fileID: -668424804728290439, guid: 7b2c519f85a9547caae6cb0f2d3b2016, type: 3}
   redScreenFilter: {fileID: 6729960244199331350}
@@ -290,6 +289,9 @@ MonoBehaviour:
   coinPrefab: {fileID: 3491391436632035485, guid: 28925d65ecde644ce90f0084bb273d7e, type: 3}
   bombPrefab: {fileID: 2970796228150805377, guid: c768ac2f84d704b87bd1750d2b7fece3, type: 3}
   challengeBoxPrefab: {fileID: 3566257983097065195, guid: 44e289e5894d045daaf5c2b2b000c154, type: 3}
+  smokePrefab: {fileID: 1708855508228383243, guid: 8eaba68a92b1c4a1a865e6d2251abf4a, type: 3}
+  jewerlyPrefab: {fileID: 2970796228150805377, guid: 8cbe88e8d257d4746b002f376ed6578b, type: 3}
+  bonePrefab: {fileID: 2970796228150805377, guid: 53d7fa1b1f5904c7ca6b198b42424988, type: 3}
 --- !u!61 &8314460733135432788
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -393,11 +395,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8af0af64fd854b49aa49cabb67e2ea1, type: 3}
---- !u!212 &427997148975462239 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 174380282851170277, guid: f8af0af64fd854b49aa49cabb67e2ea1, type: 3}
-  m_PrefabInstance: {fileID: 548041481225691322}
-  m_PrefabAsset: {fileID: 0}
 --- !u!212 &6729960244199331350 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 6556845223578859180, guid: f8af0af64fd854b49aa49cabb67e2ea1, type: 3}

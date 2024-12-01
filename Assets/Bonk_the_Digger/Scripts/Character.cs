@@ -11,6 +11,8 @@ public class Character : MonoBehaviour
     [SerializeField]
     private Animator anim;
     private int clearCount;
+    [SerializeField]
+    private SpriteRenderer discoverIcon;
 
     /// <summary>
     /// 掘る対象のタイルの場所まで移動
@@ -56,6 +58,9 @@ public class Character : MonoBehaviour
                 anim.Play("Lose");
                 yield break;
             case TileType.Bonus:
+                discoverIcon.enabled = true;
+                yield return new WaitForSeconds(1f);
+                discoverIcon.enabled = false;
                 tile.SpawnChallengeBox();
                 gameManager.StartBonusTap();
                 yield break;
@@ -72,10 +77,10 @@ public class Character : MonoBehaviour
     public IEnumerator GetTreasureBox(Tile tile)
     {
         clearCount++;
-        float random = Random.Range(0.5f, 4f);
+        float random = Random.Range(0.5f, 2f);
         string randomStr = random.ToString("f1");
+        yield return StartCoroutine(tile.PlayBonusAnimation(randomStr));
         cashManager.GetBonus(float.Parse(randomStr));
-        yield return StartCoroutine(tile.GetBonus(randomStr));
         SoundManager.instance.PlaySE(SoundType.GetMeat);
         GoNextFloor();
     }
