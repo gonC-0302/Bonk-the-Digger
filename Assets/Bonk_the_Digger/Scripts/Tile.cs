@@ -8,7 +8,7 @@ public enum TileType
 {
     Normal,
     Bomb,
-    Bonus,
+    ChallengeBox,
 }
 
 public class Tile : MonoBehaviour
@@ -18,18 +18,16 @@ public class Tile : MonoBehaviour
     [SerializeField]
     private Sprite tileSpr, tileSpr_digged;
     [SerializeField]
-    private Sprite explosionEffect,treasure;
-    [SerializeField]
-    private SpriteRenderer redScreenFilter;
-    [SerializeField]
     private TextMeshPro rateText;
     [SerializeField]
-    private GameObject coinPrefab,bombPrefab,challengeBoxPrefab;
+    private GameObject bombPrefab,challengeBoxPrefab;
     private GameObject challengeBox;
     [SerializeField]
     private GameObject smokePrefab;
     [SerializeField]
-    private GameObject jewerlyPrefab,bonePrefab;
+    private GameObject jewerlyPrefab,bonePrefab, coinPrefab;
+    [SerializeField]
+    private Animator anim;
     private int floorNumber;
     public int FloorNumber => floorNumber;
     private TileType type;
@@ -43,20 +41,19 @@ public class Tile : MonoBehaviour
         this.type = type;
         tapCount = 0;
         ResetRateText();
-        tileSpriteRender.sprite = tileSpr;
-        tileSpriteRender.enabled = true;
-        //switch (type)
-        //{
-        //    case TileType.Normal:
-        //        tileSpriteRender.color = Color.white;
-        //        break;
-        //    case TileType.Bomb:
-        //        tileSpriteRender.color = Color.red;
-        //        break;
-        //    case TileType.Bonus:
-        //        tileSpriteRender.color = Color.green;
-        //        break;
-        //}
+        anim.Play("Idle");
+        switch (type)
+        {
+            case TileType.Normal:
+                tileSpriteRender.color = Color.white;
+                break;
+            case TileType.Bomb:
+                tileSpriteRender.color = Color.red;
+                break;
+            case TileType.ChallengeBox:
+                tileSpriteRender.color = Color.green;
+                break;
+        }
     }
     public void UpdateTapCount()
     {
@@ -102,21 +99,21 @@ public class Tile : MonoBehaviour
         Destroy(bonusItem);
         StartCoroutine(ShowRate(bonusValueStr));
     }
+    public void PlayDigTileAnimation()
+    {
+        anim.SetTrigger("Dig");
+    }
     public void SpawnCoin()
     {
-        tileSpriteRender.sprite = tileSpr_digged;
         var coin =  Instantiate(coinPrefab, transform);
         Destroy(coin, 2f);
     }
-    public IEnumerator SpawnBomb()
+    public void SpawnBomb()
     {
-        tileSpriteRender.sprite = tileSpr_digged;
         Instantiate(bombPrefab, transform);
-        yield return new WaitForSeconds(2f);
     }
     public void SpawnChallengeBox()
     {
-        tileSpriteRender.sprite = tileSpr_digged;
         challengeBox = Instantiate(challengeBoxPrefab, transform);
     }
     private void HideChallengeBoxGuide()

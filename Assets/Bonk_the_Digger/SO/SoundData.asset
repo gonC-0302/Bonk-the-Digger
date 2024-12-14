@@ -16,12 +16,14 @@ MonoBehaviour:
   - type: 0
     clip: {fileID: 8300000, guid: 7c138b56c66824a1182466590e7401b9, type: 3}
   - type: 1
-    clip: {fileID: 8300000, guid: 179b16ff11c5c45af9667cf53ed1fbcf, type: 3}
+    clip: {fileID: 8300000, guid: 0c7d21cf78fcf4ba79bbcc6afea590bf, type: 3}
   - type: 2
-    clip: {fileID: 8300000, guid: 3876eb7387ed143e48af3fb670d0a909, type: 3}
+    clip: {fileID: 8300000, guid: b202d2739dee34677937f22f4ce42ea9, type: 3}
   - type: 4
     clip: {fileID: 8300000, guid: c91b5ff12aadd4d2db0816c2e467e7b7, type: 3}
   - type: 3
     clip: {fileID: 8300000, guid: 71d933cac65114cc9a9f32524d1dfcaa, type: 3}
   - type: 5
-    clip: {fileID: 8300000, guid: baf69f09544f9463382afedd6091fba2, type: 3}
+    clip: {fileID: 8300000, guid: 247ca9f194cb64f32bbad5b54e737ee5, type: 3}
+  - type: 6
+    clip: {fileID: 8300000, guid: 391407ec74e8943cba5f302e4b25d19c, type: 3}

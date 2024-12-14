@@ -320,7 +320,7 @@ MonoBehaviour:
   - {fileID: 1257616988036124755}
   - {fileID: 3651949123045218791}
   - {fileID: 839241915174579949}
-  text: {fileID: 1630286450612063308}
+  floorNumberText: {fileID: 1630286450612063308}
   background: {fileID: 2857264793489281799}
 --- !u!1001 &3631826228164876278
 PrefabInstance:

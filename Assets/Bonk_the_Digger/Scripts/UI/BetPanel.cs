@@ -4,20 +4,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.Cinemachine;
 
+/// <summary>
+/// 賭け金設定パネル
+/// </summary>
 public class BetPanel : MonoBehaviour
 {
     [SerializeField]
-    private TMP_InputField _inputField;
+    private TMP_InputField _inputField;     // 賭け金入力フィールド
     [SerializeField]
     private Image inputBackground;
     [SerializeField]
-    private Button okButton;
+    private Button okButton;                // 確定ボタン
     [SerializeField]
     private List<Button> bombButtonsList = new List<Button>();
     [SerializeField]
     private Sprite bombButton_on, bombButton_off;
     [SerializeField]
-    private GameObject cashOutPanel;
+    private GameObject playCanvas;
     [SerializeField]
     private Animator topCanvasAnim;
     [SerializeField]
@@ -39,52 +42,51 @@ public class BetPanel : MonoBehaviour
         // イベント登録
         _inputField.onEndEdit.AddListener(OnEndEdit);
         _inputField.onValueChanged.AddListener(OnValueChanged);
-        _inputField.onSelect.AddListener(OnSelect);
-        okButton.interactable = false;
+        _inputField.onSelect.AddListener(OnSelectInputField);
         okButton.onClick.AddListener(OnClickOKButton);
         halfButton.onClick.AddListener(OnClickHalfButton);
         doubleButton.onClick.AddListener(OnClickDoubleButton);
         maxButton.onClick.AddListener(OnClickMaxButton);
+        okButton.interactable = false;
         halfButton.interactable = false;
         doubleButton.interactable = false;
     }
 
+    /// <summary>
+    /// 賭け金を半分にする
+    /// </summary>
     private void OnClickHalfButton()
     {
         float halfValue = Mathf.Clamp(betValueCache * 0.5f, 0, MAX_BET_AMOUNT);
         betValueCache = (int)halfValue;
         _inputField.text = betValueCache.ToString();
     }
-
+    /// <summary>
+    /// 賭け金を２倍にする
+    /// </summary>
     private void OnClickDoubleButton()
     {
         int doubleValue = Mathf.Clamp(betValueCache * 2,0, MAX_BET_AMOUNT);
         betValueCache = doubleValue;
         _inputField.text = betValueCache.ToString();
     }
-
-    private void OnSelect(string betValue)
-    {
-        inputBackground.enabled = true;
-    }
-
+    /// <summary>
+    /// Max賭ける
+    /// </summary>
     private void OnClickMaxButton()
     {
         int maxValue = MAX_BET_AMOUNT;
         betValueCache = maxValue;
         _inputField.text = betValueCache.ToString();
     }
-
+    private void OnSelectInputField(string betValue)
+    {
+        inputBackground.enabled = true;
+    }
     private void OnValueChanged(string betValueStr)
     {
-        if (string.IsNullOrEmpty(betValueStr))
-        {
-            _inputField.text = "";
-        }
-        if (betValueStr.StartsWith("0"))
-        {
-            _inputField.text = "";
-        }
+        if (string.IsNullOrEmpty(betValueStr)) _inputField.text = "";
+        if (betValueStr.StartsWith("0")) _inputField.text = "";
 
         // 桁数上限
         if (_inputField.text.Length > Constant.MAX_BET_DIGIT)
@@ -108,7 +110,6 @@ public class BetPanel : MonoBehaviour
             doubleButton.interactable = true;
         }
     }
-
     private void OnEndEdit(string betValueString)
     {
         inputBackground.enabled = false;
@@ -132,12 +133,14 @@ public class BetPanel : MonoBehaviour
             bombButtonsList[i].image.sprite =bombButton_on;
         }
         bombCountCache = bombButtonID;
-        SoundManager.instance.PlaySE(SoundType.SelectBombCount);
+        //SoundManager.instance.PlaySE(SoundType.SelectBombCount);
     }
+    /// <summary>
+    /// 賭け金確定
+    /// </summary>
     private void OnClickOKButton()
     {
-        cashOutPanel.SetActive(true);
-        //gameObject.SetActive(false);
+        playCanvas.SetActive(true);
         topCanvasAnim.enabled = true;
         cinemachinePositionComposer.TargetOffset = new Vector3(0,0,0);
         // 爆弾の数を設定

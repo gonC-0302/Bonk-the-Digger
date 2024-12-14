@@ -11,7 +11,7 @@ public class TouchDetector : MonoBehaviour
     private FloorManager floorManager;
     [SerializeField]
     private Character character;
-    private Tile bonusTile;
+    private Tile challengeBoxTile;
 
     void Update()
     {
@@ -28,7 +28,7 @@ public class TouchDetector : MonoBehaviour
                     {
                         // 現在滞在しているフロアのタイルしかタップできないように制限
                         if (tile.FloorNumber != floorManager.CurrentFloorNumber) return;
-                        if(tile.Type == TileType.Bonus) bonusTile = tile;
+                        if(tile.Type == TileType.ChallengeBox) challengeBoxTile = tile;
                         character.MoveTargetTile(tile);
                     }
                 }
@@ -42,9 +42,9 @@ public class TouchDetector : MonoBehaviour
                     if (!hit.collider) return;
                     if (hit.collider.TryGetComponent<Tile>(out Tile tile))
                     {
-                        if (tile != bonusTile) return;
+                        if (tile != challengeBoxTile) return;
                         tile.UpdateTapCount();
-                        SoundManager.instance.PlaySE(SoundType.TapTreasureBox);
+                        SoundManager.instance.PlaySE(SoundType.TapChallengeBox);
                         if (tile.TapCount > 10)
                         {
                             gameManager.ChangeToMoveCharacterState();

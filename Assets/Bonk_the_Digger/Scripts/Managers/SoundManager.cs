@@ -2,12 +2,14 @@ using UnityEngine;
 
 public enum SoundType
 {
-    SelectBombCount,
-    Dig,
-    GetMeat,
-    ShowTreasureBox,
-    TapTreasureBox,
-    Explosion
+    SelectBombCount,    // 爆弾の数選択SE
+    Dig,                // 掘るSE
+    GetCoin,            // コイン獲得SE
+    ShowChallengeBox,   // チャレンジボックス出現SE
+    TapChallengeBox,    // チャレンジボックスタップSE
+    Explosion,          // 爆発SE
+    GameOver
+      
 }
 
 public class SoundManager : MonoBehaviour
@@ -21,12 +23,12 @@ public class SoundManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            //DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
+        source.PlayDelayed(0.000001f);
     }
     public void StopBGM()
     {

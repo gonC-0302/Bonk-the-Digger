@@ -1,15 +1,20 @@
 using UnityEngine;
+using System.Collections;
+
 public enum GamePhase
 {
     Bet,            // 賭け金設定フェーズ
     SelectTile,     // タイル選択フェーズ
-    BonusTap,
+    BonusTap,       // ボーナスタップフェーズ
     MoveCharacter,  // キャラクター移動フェーズ
     Pause,
     Win,
     Lose
 }
 
+/// <summary>
+/// ゲームフェーズを管理
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
@@ -54,31 +59,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ArriveAtNextFloor()
     {
-        // 現在のフロアNo.を更新
         floorManager.UpdateFloorNumber();
-        // 現在のキャッシュを増加
-        //cashManager.IncreaseCashBack(floorManager.CurrentFloorNumber);
         currentPhase = GamePhase.SelectTile;
         cashOutPanel.ActivateCashOutButton();
     }
-
-    public void Win()
-    {
-        currentPhase = GamePhase.Win;
-        cashOutPanel.CloseCashOutPanel();
-        appCanvas.ShowHeaderInfomations();
-        var rewardAmount = Mathf.Clamp(cashManager.CurrentCash,0,9999999);
-        resultPanel.ActivateWinPanel(rewardAmount);
-    }
-
-    public void Lose()
-    {
-        currentPhase = GamePhase.Lose;
-        cashOutPanel.CloseCashOutPanel();
-        appCanvas.ShowHeaderInfomations();
-        resultPanel.ActivateLosePanel();
-    }
-
     public void PauseGame()
     {
         if (currentPhase != GamePhase.SelectTile) return;
@@ -88,5 +72,24 @@ public class GameManager : MonoBehaviour
     {
         if (currentPhase != GamePhase.Pause) return;
         currentPhase = GamePhase.SelectTile;
+    }
+    public void Win()
+    {
+        currentPhase = GamePhase.Win;
+        cashOutPanel.DisableCashOutPanel();
+        appCanvas.ShowHeaderInfomations();
+        var cashBackAmount = Mathf.Clamp(cashManager.CashBackAmount,0,9999999);
+        resultPanel.ActivateWinPanel(cashBackAmount);
+    }
+    public void Lose()
+    {
+        currentPhase = GamePhase.Lose;
+      
+    }
+    public void ActivateLosePanel()
+    {
+        cashOutPanel.DisableCashOutPanel();
+        appCanvas.ShowHeaderInfomations();
+        resultPanel.ActivateLosePanel();
     }
 }

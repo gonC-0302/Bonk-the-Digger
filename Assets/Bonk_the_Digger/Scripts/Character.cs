@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using DG.Tweening.Core.Easing;
 
 public class Character : MonoBehaviour
 {
@@ -22,10 +23,22 @@ public class Character : MonoBehaviour
     {
         gameManager.ChangeToMoveCharacterState();
         var diff = gameObject.transform.position.x - tile.transform.position.x;
-        ChangeDirection(diff);
-        var targetPosX = tile.transform.position.x;
-        gameObject.transform.DOMoveX(targetPosX, 0.25f).
-            OnComplete(() => StartCoroutine(PlayDigAnimation(tile)));
+        if(Mathf.Abs(diff) <= 0.1f)
+        {
+            StartCoroutine(PlayDigAnimation(tile));
+        }
+        else
+        {
+            ChangeDirection(diff);
+            var targetPosX = tile.transform.position.x;
+            anim.SetBool("IsRunning", true);
+            gameObject.transform.DOMoveX(targetPosX, 1f).
+                OnComplete(() =>
+                {
+                    anim.SetBool("IsRunning", false);
+                    StartCoroutine(PlayDigAnimation(tile));
+                });
+        }
     }
     private void ChangeDirection(float diff)
     {
@@ -42,24 +55,34 @@ public class Character : MonoBehaviour
     private IEnumerator PlayDigAnimation(Tile tile)
     {
         SoundManager.instance.PlaySE(SoundType.Dig);
-        // TODO: 掘るアニメーション
+        anim.SetBool("IsDigging", true);
+        tile.PlayDigTileAnimation();
         yield return new WaitForSeconds(1f);
-        //tile.ShowItem();
         switch (tile.Type)
         {
             case TileType.Normal:
                 tile.SpawnCoin();
-                yield return new WaitForSeconds(0.75f);
+                yield return new WaitForSeconds(0.5f);
+                anim.SetBool("IsDigging", false);
                 GetCoin();
                 yield break;
             case TileType.Bomb:
-                yield return StartCoroutine(tile.SpawnBomb());
                 gameManager.Lose();
+                tile.SpawnBomb();
+                SoundManager.instance.PlaySE(SoundType.Explosion);
+                anim.SetBool("IsDigging", false);
+                anim.SetTrigger("Panic");
+                yield return new WaitForSeconds(2.5f);
+                gameManager.ActivateLosePanel();
+                yield return new WaitForSeconds(0.75f);
+                transform.position = new Vector3(0, transform.position.y);
+                SoundManager.instance.PlaySE(SoundType.GameOver);
                 anim.Play("Lose");
                 yield break;
-            case TileType.Bonus:
+            case TileType.ChallengeBox:
                 discoverIcon.enabled = true;
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.5f);
+                anim.SetBool("IsDigging", false);
                 discoverIcon.enabled = false;
                 tile.SpawnChallengeBox();
                 gameManager.StartBonusTap();
@@ -70,9 +93,9 @@ public class Character : MonoBehaviour
     public void GetCoin()
     {
         clearCount++;
-        cashManager.EvaluateCurrentCash(clearCount);
-        SoundManager.instance.PlaySE(SoundType.GetMeat);
-        GoNextFloor();
+        cashManager.EvaluateCurrentCashBackAmount(clearCount);
+        SoundManager.instance.PlaySE(SoundType.GetCoin);
+        PlayJumpAnimation();
     }
     public IEnumerator GetTreasureBox(Tile tile)
     {
@@ -81,8 +104,12 @@ public class Character : MonoBehaviour
         string randomStr = random.ToString("f1");
         yield return StartCoroutine(tile.PlayBonusAnimation(randomStr));
         cashManager.GetBonus(float.Parse(randomStr));
-        SoundManager.instance.PlaySE(SoundType.GetMeat);
-        GoNextFloor();
+        SoundManager.instance.PlaySE(SoundType.GetCoin);
+        PlayJumpAnimation();
+    }
+    public void PlayJumpAnimation()
+    {
+        anim.SetTrigger("Jump");
     }
     /// <summary>
     /// 次のフロアに降りる

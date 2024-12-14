@@ -12,16 +12,6 @@ public class CashOutPanel : MonoBehaviour
     [SerializeField]
     private Character character;
 
-    public void ActivateCashOutButton()
-    {
-        cashOutButton.interactable = true;
-    }
-
-    public void DeactivateCashOutButton()
-    {
-        cashOutButton.interactable = false;
-    }
-
     private void Start()
     {
         cashOutButton.onClick.AddListener(OnClickCashOutButton);
@@ -55,8 +45,16 @@ public class CashOutPanel : MonoBehaviour
         manager.Win();
         character.PlayWinAnimation();
     }
-    public void CloseCashOutPanel()
+    public void DisableCashOutPanel()
     {
         gameObject.SetActive(false);
+    }
+    public void ActivateCashOutButton()
+    {
+        cashOutButton.interactable = true;
+    }
+    public void DeactivateCashOutButton()
+    {
+        cashOutButton.interactable = false;
     }
 }

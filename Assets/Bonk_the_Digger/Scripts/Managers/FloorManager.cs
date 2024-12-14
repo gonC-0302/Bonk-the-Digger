@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// フロアのライフサイクル管理（生成・移動・情報更新）
+/// </summary>
 public class FloorManager : MonoBehaviour
 {
     [SerializeField]

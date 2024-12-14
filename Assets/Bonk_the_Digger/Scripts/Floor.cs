@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -8,7 +7,7 @@ public class Floor : MonoBehaviour
     [SerializeField]
     private List<Tile> tilesList = new List<Tile>();
     [SerializeField]
-    private TextMeshPro text;
+    private TextMeshPro floorNumberText;
     [SerializeField]
     private SpriteRenderer background;
     private int floorNubmer;
@@ -22,12 +21,12 @@ public class Floor : MonoBehaviour
         if (floorNubmer == 0)
         {
             background.enabled = false;
-            text.text = "";
+            floorNumberText.text = "";
         }
         else
         {
             background.enabled = true;
-            text.text = $"{floorNubmer}";
+            floorNumberText.text = $"{floorNubmer}";
         }
     }
 
@@ -36,6 +35,7 @@ public class Floor : MonoBehaviour
     /// </summary>
     /// <param name="bombCount"></param>
     /// <exception cref="System.Exception"></exception>
+    // TODO: リファクタリング必要
     public void SetTiles(int bombCount)
     {
         if (tilesList.Count != Constant.TILE_COUNT)
@@ -48,12 +48,13 @@ public class Floor : MonoBehaviour
         {
             numbers.Add(i);
         }
+
         // 爆弾タイルとボーナスタイルの番号を決める
-        var remainingNumbers = SetBombTileNumbers(numbers, bombCount);
+        var remainingNumbers = DetermineBombTilePosition(numbers, bombCount);
         Debug.Log($"階層{floorNubmer}の爆弾タイル：{string.Join(",", bombTileNumbersList)}");
         if (floorNubmer != 0 && floorNubmer % 5 == 0)
         {
-            SetBonusTileNumber(remainingNumbers);
+            DetermineBonusTilePosition(remainingNumbers);
             Debug.Log($"階層{floorNubmer}のボーナスタイル：{bonusTileNumber}");
         }
 
@@ -73,7 +74,7 @@ public class Floor : MonoBehaviour
                     // ボーナスタイル
                     if (i == bonusTileNumber)
                     {
-                        tilesList[i].InitTile(floorNumber: floorNubmer, type: TileType.Bonus);
+                        tilesList[i].InitTile(floorNumber: floorNubmer, type: TileType.ChallengeBox);
                     }
                     else
                     {
@@ -102,7 +103,7 @@ public class Floor : MonoBehaviour
     /// 爆弾の位置を決める
     /// </summary>
     /// <param name="bombCount"></param>
-    private List<int> SetBombTileNumbers(List<int> numbers,int bombCount)
+    private List<int> DetermineBombTilePosition(List<int> numbers,int bombCount)
     {
         bombTileNumbersList.Clear();
         // 爆弾の数だけ、ランダムにタイルに埋め込んでいく
@@ -117,7 +118,11 @@ public class Floor : MonoBehaviour
         return numbers;
       
     }
-    private void SetBonusTileNumber(List<int> numbers)
+    /// <summary>
+    /// ボーナスタイルの位置を決める
+    /// </summary>
+    /// <param name="numbers"></param>
+    private void DetermineBonusTilePosition(List<int> numbers)
     {
         int bonusTileIndex = Random.Range(0, numbers.Count);
         bonusTileNumber = numbers[bonusTileIndex];
