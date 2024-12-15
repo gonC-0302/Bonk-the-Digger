@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
-using DG.Tweening.Core.Easing;
 
 public class Character : MonoBehaviour
 {
@@ -11,9 +10,9 @@ public class Character : MonoBehaviour
     private CashManager cashManager;
     [SerializeField]
     private Animator anim;
-    private int clearCount;
     [SerializeField]
     private SpriteRenderer discoverIcon;
+    private int clearCount;
 
     /// <summary>
     /// 掘る対象のタイルの場所まで移動
@@ -32,13 +31,20 @@ public class Character : MonoBehaviour
             ChangeDirection(diff);
             var targetPosX = tile.transform.position.x;
             anim.SetBool("IsRunning", true);
-            gameObject.transform.DOMoveX(targetPosX, 1f).
+            var moveTime = Mathf.Abs(diff) / 0.775f * 0.5f;
+            Debug.Log(moveTime);
+            gameObject.transform.DOMoveX(targetPosX, moveTime).SetEase(Ease.Linear).
                 OnComplete(() =>
                 {
                     anim.SetBool("IsRunning", false);
                     StartCoroutine(PlayDigAnimation(tile));
                 });
         }
+    }
+    public void PlayMoveSE()
+    {
+        if (gameManager.CurrentPhase != GamePhase.MoveCharacter) return;
+        SoundManager.instance.PlaySE(SoundType.Move);
     }
     private void ChangeDirection(float diff)
     {
@@ -69,10 +75,10 @@ public class Character : MonoBehaviour
             case TileType.Bomb:
                 gameManager.Lose();
                 tile.SpawnBomb();
-                SoundManager.instance.PlaySE(SoundType.Explosion);
+                yield return new WaitForSeconds(0.5f);
                 anim.SetBool("IsDigging", false);
                 anim.SetTrigger("Panic");
-                yield return new WaitForSeconds(2.5f);
+                yield return new WaitForSeconds(1.5f);
                 gameManager.ActivateLosePanel();
                 yield return new WaitForSeconds(0.75f);
                 transform.position = new Vector3(0, transform.position.y);
@@ -94,7 +100,6 @@ public class Character : MonoBehaviour
     {
         clearCount++;
         cashManager.EvaluateCurrentCashBackAmount(clearCount);
-        SoundManager.instance.PlaySE(SoundType.GetCoin);
         PlayJumpAnimation();
     }
     public IEnumerator GetTreasureBox(Tile tile)
@@ -120,7 +125,6 @@ public class Character : MonoBehaviour
         gameObject.transform.DOMoveY(targetPosY, 0.25f).
             OnComplete(() => gameManager.ArriveAtNextFloor());
     }
-
     public void PlayWinAnimation()
     {
         anim.Play("Win");

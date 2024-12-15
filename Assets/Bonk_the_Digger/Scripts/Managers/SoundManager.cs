@@ -3,6 +3,7 @@ using UnityEngine;
 public enum SoundType
 {
     SelectBombCount,    // 爆弾の数選択SE
+    Move,
     Dig,                // 掘るSE
     GetCoin,            // コイン獲得SE
     ShowChallengeBox,   // チャレンジボックス出現SE
@@ -28,7 +29,6 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        source.PlayDelayed(0.000001f);
     }
     public void StopBGM()
     {

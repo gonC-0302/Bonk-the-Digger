@@ -11,20 +11,16 @@ public class BackGroundMover : MonoBehaviour
 
     private void Update()
     {
-        if (material)
-        {
-            var x = Mathf.Repeat(Time.time * offsetSpeed.x, MAX_LENGTH);
-            var y = Mathf.Repeat(Time.time * offsetSpeed.y, MAX_LENGTH);
-            var offset = new Vector2(x, y);
-            material.SetTextureOffset(PROPERTY_NAME, offset);
-        }
+        if (!material) return;
+        var x = Mathf.Repeat(Time.time * offsetSpeed.x, MAX_LENGTH);
+        var y = Mathf.Repeat(Time.time * offsetSpeed.y, MAX_LENGTH);
+        var offset = new Vector2(x, y);
+        material.SetTextureOffset(PROPERTY_NAME, offset);
     }
 
     private void OnDestroy()
     {
-        if (material)
-        {
-            material.SetTextureOffset(PROPERTY_NAME, Vector2.zero);
-        }
+        if (!material) return;
+        material.SetTextureOffset(PROPERTY_NAME, Vector2.zero);
     }
 }

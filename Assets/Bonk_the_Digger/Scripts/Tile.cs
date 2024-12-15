@@ -106,11 +106,13 @@ public class Tile : MonoBehaviour
     public void SpawnCoin()
     {
         var coin =  Instantiate(coinPrefab, transform);
+        SoundManager.instance.PlaySE(SoundType.GetCoin);
         Destroy(coin, 2f);
     }
     public void SpawnBomb()
     {
         Instantiate(bombPrefab, transform);
+        SoundManager.instance.PlaySE(SoundType.Explosion);
     }
     public void SpawnChallengeBox()
     {
