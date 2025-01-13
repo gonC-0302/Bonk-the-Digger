@@ -50,18 +50,18 @@ public class Tile : MonoBehaviour
         tapCount = 0;
         ResetRateText();
         anim.Play("Idle");
-        //switch (type)
-        //{
-        //    case TileType.Normal:
-        //        tileSpriteRender.color = Color.white;
-        //        break;
-        //    case TileType.Bomb:
-        //        tileSpriteRender.color = Color.red;
-        //        break;
-        //    case TileType.ChallengeBox:
-        //        tileSpriteRender.color = Color.green;
-        //        break;
-        //}
+        switch (type)
+        {
+            case TileType.Normal:
+                tileSpriteRender.color = Color.white;
+                break;
+            case TileType.Bomb:
+                tileSpriteRender.color = Color.red;
+                break;
+            case TileType.ChallengeBox:
+                tileSpriteRender.color = Color.green;
+                break;
+        }
     }
     public void UpdateTapCount()
     {
