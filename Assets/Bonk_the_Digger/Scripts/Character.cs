@@ -10,8 +10,8 @@ public class Character : MonoBehaviour
     private CashManager cashManager;
     [SerializeField]
     private Animator anim;
-    [SerializeField]
-    private SpriteRenderer discoverIcon;
+    //[SerializeField]
+    //private SpriteRenderer discoverIcon;
     private int clearCount;
 
     /// <summary>
@@ -86,10 +86,6 @@ public class Character : MonoBehaviour
                 anim.Play("Lose");
                 yield break;
             case TileType.ChallengeBox:
-                discoverIcon.enabled = true;
-                yield return new WaitForSeconds(0.5f);
-                anim.SetBool("IsDigging", false);
-                discoverIcon.enabled = false;
                 tile.SpawnChallengeBox();
                 gameManager.StartBonusTap();
                 yield break;
@@ -102,14 +98,15 @@ public class Character : MonoBehaviour
         cashManager.EvaluateCurrentCashBackAmount(clearCount);
         PlayJumpAnimation();
     }
-    public IEnumerator GetTreasureBox(Tile tile)
+    public void GetTreasureBox(Tile tile)
     {
         clearCount++;
+        anim.SetBool("IsDigging", false);
         float random = Random.Range(0.5f, 2f);
         string randomStr = random.ToString("f1");
-        yield return StartCoroutine(tile.PlayBonusAnimation(randomStr));
+        tile.PlayBonusAnimation(randomStr);
         cashManager.GetBonus(float.Parse(randomStr));
-        SoundManager.instance.PlaySE(SoundType.GetCoin);
+        //SoundManager.instance.PlaySE(SoundType.GetCoin);
         PlayJumpAnimation();
     }
     public void PlayJumpAnimation()

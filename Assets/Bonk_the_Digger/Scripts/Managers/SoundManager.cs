@@ -9,8 +9,12 @@ public enum SoundType
     ShowChallengeBox,   // チャレンジボックス出現SE
     TapChallengeBox,    // チャレンジボックスタップSE
     Explosion,          // 爆発SE
-    GameOver
-      
+    GameOver,
+    ClickButton,
+    CashOutButton,
+    ChallengeBox_Appear,
+    ChallengeBox_Hit,
+    ChallengeBox_Open,
 }
 
 public class SoundManager : MonoBehaviour

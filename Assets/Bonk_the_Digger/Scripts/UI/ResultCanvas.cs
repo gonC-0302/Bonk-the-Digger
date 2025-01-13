@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class ResultCanvas : MonoBehaviour
 {
@@ -34,6 +35,12 @@ public class ResultCanvas : MonoBehaviour
     {
         if (didRetry) return;
         didRetry = true;
+        StartCoroutine(LoadSceneAsync());
+    }
+    private IEnumerator LoadSceneAsync()
+    {
+        SoundManager.instance.PlaySE(SoundType.ClickButton);
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadSceneAsync("Game");
     }
     public void ActivateLosePanel()
@@ -44,7 +51,6 @@ public class ResultCanvas : MonoBehaviour
         //title_lose.SetActive(true);
         title_win.SetActive(false);
     }
-
     private void UpdateRewardAmountText(int cashBackAmount)
     {
         cashBackAmountText.text = cashBackAmount.ToString();

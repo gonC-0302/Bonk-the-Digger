@@ -20,6 +20,7 @@ public class CashOutPanel : MonoBehaviour
     }
     private void OnClickCashOutButton()
     {
+        SoundManager.instance.PlaySE(SoundType.CashOutButton);
         manager.PauseGame();
         OpenPopUp();
     }

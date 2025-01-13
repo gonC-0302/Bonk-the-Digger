@@ -140,6 +140,7 @@ public class BetPanel : MonoBehaviour
     /// </summary>
     private void OnClickOKButton()
     {
+        SoundManager.instance.PlaySE(SoundType.ClickButton);
         playCanvas.SetActive(true);
         topCanvasAnim.enabled = true;
         cinemachinePositionComposer.TargetOffset = new Vector3(0,0,0);

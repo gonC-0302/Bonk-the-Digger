@@ -28,46 +28,56 @@ public class Tile : MonoBehaviour
     private GameObject jewerlyPrefab,bonePrefab, coinPrefab;
     [SerializeField]
     private Animator anim;
+    [SerializeField]
+    private SpriteRenderer hitEffectPrefab;
+    private SpriteRenderer hitEffect;
+    private Animator challengeBoxAnim;
+    private SpriteRenderer challengeBoxSpr;
     private int floorNumber;
     public int FloorNumber => floorNumber;
     private TileType type;
     public TileType Type => type;
     private int tapCount;
     public int TapCount => tapCount;
+    private bool isOpendChallengeBox;
+    public bool IsOpenedChallengeBox => isOpendChallengeBox;
 
     public void InitTile(int floorNumber,TileType type)
     {
         this.floorNumber = floorNumber;
         this.type = type;
+        isOpendChallengeBox = false;
         tapCount = 0;
         ResetRateText();
         anim.Play("Idle");
-        switch (type)
-        {
-            case TileType.Normal:
-                tileSpriteRender.color = Color.white;
-                break;
-            case TileType.Bomb:
-                tileSpriteRender.color = Color.red;
-                break;
-            case TileType.ChallengeBox:
-                tileSpriteRender.color = Color.green;
-                break;
-        }
+        //switch (type)
+        //{
+        //    case TileType.Normal:
+        //        tileSpriteRender.color = Color.white;
+        //        break;
+        //    case TileType.Bomb:
+        //        tileSpriteRender.color = Color.red;
+        //        break;
+        //    case TileType.ChallengeBox:
+        //        tileSpriteRender.color = Color.green;
+        //        break;
+        //}
     }
     public void UpdateTapCount()
     {
         tapCount++;
-        if (tapCount == 1) HideChallengeBoxGuide();
-        challengeBox.transform.DOScale(1.2f, 0.1f)
-            .OnComplete(() => challengeBox.transform.DOScale(1.0f,0.1f).SetLink(challengeBox)).SetLink(challengeBox);
+        hitEffect.color = new Color(1,1,1, tapCount * 0.1f);
+        if (tapCount == 1)
+        {
+            hitEffect.GetComponent<Animator>().SetTrigger("Hit");
+            SoundManager.instance.PlaySE(SoundType.ChallengeBox_Hit);
+        }
     }
     public IEnumerator ShowRate(string rateStr)
     {
         rateText.enabled = true;
         rateText.text = $"x{rateStr}";
-        rateText.transform.DOScale(2f, 0.25f).OnComplete(() => rateText.transform.DOScale(1f, 0.25f));
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         rateText.DOFade(0, 1f);
     }
     private void ResetRateText()
@@ -77,27 +87,29 @@ public class Tile : MonoBehaviour
         rateText.transform.localScale = Vector3.one;
         rateText.color = Color.white;
     }
-    public IEnumerator PlayBonusAnimation(string bonusValueStr)
+    public void PlayBonusAnimation(string bonusValueStr)
     {
-        var smoke = Instantiate(smokePrefab, transform);
-        yield return new WaitForSeconds(1f);
-        GameObject bonusItem;
+        HideChallengeBoxGuide();
+        Destroy(hitEffect);
+        challengeBoxAnim.SetTrigger("Open");
+        StartCoroutine(SpawnBonusItem(bonusValueStr));
+    }
+    private IEnumerator SpawnBonusItem(string bonusValueStr)
+    {
         float bonusValue = float.Parse(bonusValueStr);
-        if(bonusValue >= 1)
+        if (bonusValue >= 1)
         {
-            bonusItem = Instantiate(jewerlyPrefab, transform);
             rateText.color = Color.yellow;
         }
         else
         {
-            bonusItem = Instantiate(bonePrefab, transform);
             rateText.color = Color.gray;
-
         }
         yield return new WaitForSeconds(2f);
-        Destroy(smoke);
-        Destroy(bonusItem);
         StartCoroutine(ShowRate(bonusValueStr));
+        if (challengeBox == null) yield break;
+        Destroy(challengeBox,1f);
+        //Destroy(bonusItem);
     }
     public void PlayDigTileAnimation()
     {
@@ -117,15 +129,18 @@ public class Tile : MonoBehaviour
     public void SpawnChallengeBox()
     {
         challengeBox = Instantiate(challengeBoxPrefab, transform);
+        challengeBoxAnim = challengeBox.GetComponent<Animator>();
+        challengeBoxSpr = challengeBox.GetComponent<SpriteRenderer>();
+        hitEffect = Instantiate(hitEffectPrefab,challengeBox.transform);
+        SoundManager.instance.PlaySE(SoundType.ChallengeBox_Appear);
     }
     private void HideChallengeBoxGuide()
     {
         if (challengeBox == null) return;
         challengeBox.transform.GetChild(0).gameObject.SetActive(false);
     }
-    public void HideChallengeBox()
+    public void OpenChallengeBox()
     {
-        if (challengeBox == null) return;
-        Destroy(challengeBox);
+        isOpendChallengeBox = true;
     }
 }

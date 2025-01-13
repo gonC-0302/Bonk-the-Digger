@@ -44,12 +44,12 @@ public class TouchDetector : MonoBehaviour
                     {
                         if (tile != challengeBoxTile) return;
                         tile.UpdateTapCount();
-                        SoundManager.instance.PlaySE(SoundType.TapChallengeBox);
-                        if (tile.TapCount > 10)
+                        if (tile.TapCount > 10 && !tile.IsOpenedChallengeBox)
                         {
+                            tile.OpenChallengeBox();
+                            SoundManager.instance.PlaySE(SoundType.ChallengeBox_Open);
                             gameManager.ChangeToMoveCharacterState();
-                            tile.HideChallengeBox();
-                            StartCoroutine(character.GetTreasureBox(tile));
+                            character.GetTreasureBox(tile);
                         }
                     }
                 }
