@@ -2,27 +2,28 @@ using UnityEngine;
 
 public class AspectRatioMaintainer : MonoBehaviour
 {
-    public float targetAspect = 16.0f / 9.0f;
+    private int lastWidth;
+    private int lastHeight;
 
     void Start()
     {
-        // アスペクト比を固定
-        int width = Screen.width;
-        int height = (int)(width / targetAspect);
-        Screen.SetResolution(width, height, false);
+        UpdateResolution();
     }
 
     void Update()
     {
-        // ウィンドウサイズが変更された場合、アスペクト比を維持する
-        int width = Screen.width;
-        int height = Screen.height;
-        float currentAspect = (float)width / height;
-
-        if (Mathf.Abs(currentAspect - targetAspect) > 0.01f)
+        // ウィンドウサイズが変更されたら解像度を更新
+        if (Screen.width != lastWidth || Screen.height != lastHeight)
         {
-            height = (int)(width / targetAspect);
-            Screen.SetResolution(width, height, false);
+            UpdateResolution();
         }
+    }
+
+    void UpdateResolution()
+    {
+        lastWidth = Screen.width;
+        lastHeight = Screen.height;
+
+        Screen.SetResolution(lastWidth, lastHeight, false);
     }
 }
