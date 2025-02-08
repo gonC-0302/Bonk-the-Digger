@@ -13,6 +13,13 @@ public class WebGLResizer : MonoBehaviour
 #endif
     }
 
+    private void Update()
+    {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        SetCanvasSize(); // WebGLで実行時にJavaScriptの関数を呼び出す
+#endif
+    }
+
     public void UpdateResolution(int width, int height)
     {
         Screen.SetResolution(width, height, false);
