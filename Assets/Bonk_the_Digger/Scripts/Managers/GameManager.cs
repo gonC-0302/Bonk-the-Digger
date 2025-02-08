@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
         currentPhase = GamePhase.Win;
         cashOutPanel.DisableCashOutPanel();
         appCanvas.ShowHeaderInfomations();
-        var cashBackAmount = Mathf.Clamp(cashManager.CashBackAmount,0,9999999);
+        var cashBackAmount = Mathf.Clamp(cashManager.CashBackAmount,0,999999999);
         resultPanel.ActivateWinPanel(cashBackAmount);
     }
     public void Lose()

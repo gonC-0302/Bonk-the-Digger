@@ -54,5 +54,14 @@ public class ResultCanvas : MonoBehaviour
     private void UpdateRewardAmountText(int cashBackAmount)
     {
         cashBackAmountText.text = cashBackAmount.ToString();
+
+        if (cashBackAmountText.text.Length > Constant.MAX_BET_DIGIT)
+        {
+            cashBackAmountText.fontSize = 40;
+        }
+        else
+        {
+            cashBackAmountText.fontSize = 44;
+        }
     }
 }
