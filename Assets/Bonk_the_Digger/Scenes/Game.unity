@@ -682,7 +682,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundDataSO: {fileID: 11400000, guid: 40f3448549b2f440bb0615f6f1291817, type: 2}
   tileDataSO: {fileID: 11400000, guid: ce790428fbb2c4bc690e1329d4f148fb, type: 2}
-  cashBackRateDataSO: {fileID: 11400000, guid: b0637db897dba4f1bbb82ee6259b3b79, type: 2}
 --- !u!4 &134222632
 Transform:
   m_ObjectHideFlags: 0
@@ -2651,7 +2650,7 @@ MonoBehaviour:
   currentRateText: {fileID: 2110430453}
   betAmountText: {fileID: 486259196}
   floorManager: {fileID: 1470052969}
-  dataSO: {fileID: 11400000, guid: b0637db897dba4f1bbb82ee6259b3b79, type: 2}
+  dataSO: {fileID: 11400000, guid: 9b8574eb7e6b6493babd933d4cdb2f1c, type: 2}
 --- !u!4 &633033712
 Transform:
   m_ObjectHideFlags: 0

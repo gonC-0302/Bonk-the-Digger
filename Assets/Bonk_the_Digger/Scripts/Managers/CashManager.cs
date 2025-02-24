@@ -17,7 +17,7 @@ public class CashManager : MonoBehaviour
     [SerializeField]
     private FloorManager floorManager;
     [SerializeField]
-    private CashBackRateDataSO dataSO;
+    private BonusRateDataSO dataSO;
 
     /// <summary>
     /// 初期の賭け金を登録
@@ -42,24 +42,20 @@ public class CashManager : MonoBehaviour
     /// <param name="baseRate"></param>
     /// <param name="multipleRate"></param>
     /// <param name="floorNumber"></param>
-    public void EvaluateCurrentCashBackAmount(int clearCount)
+    public void EvaluateCurrentCashBackAmount()
     {
-        if (clearCount < 1) return;
-        currentRate = CalclateCashBackRate(clearCount);
+        float rate = CalculateCashBackRate();
+        currentRate *= rate;
         float resultCashFloat = betAmount * currentRate;
         cashBackAmount = Mathf.FloorToInt(resultCashFloat);
         UpdateCashBackAmountText();
     }
-    private float CalclateCashBackRate(int clearCount)
+    private float CalculateCashBackRate()
     {
-        var data = dataSO.ratesList.Find(x => x.bombCount == floorManager.BombCount);
-        float cashBackRate = this.currentRate;
-        if (clearCount == 1) cashBackRate *= data.baseRate;
-        else cashBackRate *= data.multipleRate;
-        // 賞金倍率は小数第二位までで計算（小数第三位を四捨五入）
-        var cashBackRateStr = cashBackRate.ToString("f2");
-        cashBackRate = float.Parse(cashBackRateStr);
-        return cashBackRate;
+        int maxTileCount = 5;
+        float bombCount = floorManager.BombCount;
+        float successRate = (maxTileCount - bombCount) / maxTileCount;
+        return 1 / successRate;
     }
     /// <summary>
     /// チャレンジボックスのボーナス
@@ -72,6 +68,37 @@ public class CashManager : MonoBehaviour
     }
     private void UpdateCashBackAmountText()
     {
-        currentRateText.text = $"x{currentRate.ToString()}";
+        var rateStr = currentRate.ToString("f2");
+        currentRateText.text = $"x{float.Parse(rateStr).ToString()}";
+    }
+    public float CalculateBonusRate()
+    {
+        var list = dataSO.ratesList.Find(x => x.bombCount == floorManager.BombCount);
+        float random = Random.Range(0, 1000);
+        if(random < list.probabilitiesList[4])
+        {
+            return 100;
+        }
+        else if (random < list.probabilitiesList[4]+list.probabilitiesList[3])
+        {
+            return 30;
+        }
+        else if (random < list.probabilitiesList[4] + list.probabilitiesList[3]+list.probabilitiesList[2])
+        {
+            return 5;
+        }
+        else if (random < list.probabilitiesList[4] + list.probabilitiesList[3] + list.probabilitiesList[2] + list.probabilitiesList[1])
+        {
+            return 1;
+        }
+        else if (random < list.probabilitiesList[4] + list.probabilitiesList[3] + list.probabilitiesList[2] + list.probabilitiesList[1] + list.probabilitiesList[0])
+        {
+            return 0.1f;
+        }
+        else
+        {
+            Debug.LogError("不正な値");
+            return 0;
+        }
     }
 }

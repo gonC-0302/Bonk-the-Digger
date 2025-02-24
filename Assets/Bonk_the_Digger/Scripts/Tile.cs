@@ -3,6 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using TMPro;
 using System.Collections;
+using UnityEditor;
 
 public enum TileType
 {
@@ -30,9 +31,12 @@ public class Tile : MonoBehaviour
     private Animator anim;
     [SerializeField]
     private SpriteRenderer hitEffectPrefab;
+    [SerializeField]
+    private Sprite silverBonus, goldBonus, rainbowBonus;
     private SpriteRenderer hitEffect;
     private Animator challengeBoxAnim;
     private SpriteRenderer challengeBoxSpr;
+    private float bonusRate;
     private int floorNumber;
     public int FloorNumber => floorNumber;
     private TileType type;
@@ -48,6 +52,7 @@ public class Tile : MonoBehaviour
         this.type = type;
         isOpendChallengeBox = false;
         tapCount = 0;
+        bonusRate = 1;
         ResetRateText();
         anim.Play("Idle");
         switch (type)
@@ -91,20 +96,12 @@ public class Tile : MonoBehaviour
     {
         HideChallengeBoxGuide();
         Destroy(hitEffect);
+        challengeBoxAnim.enabled = true;
         challengeBoxAnim.SetTrigger("Open");
         StartCoroutine(SpawnBonusItem(bonusValueStr));
     }
     private IEnumerator SpawnBonusItem(string bonusValueStr)
     {
-        float bonusValue = float.Parse(bonusValueStr);
-        if (bonusValue >= 1)
-        {
-            rateText.color = Color.yellow;
-        }
-        else
-        {
-            rateText.color = Color.gray;
-        }
         yield return new WaitForSeconds(2f);
         StartCoroutine(ShowRate(bonusValueStr));
         if (challengeBox == null) yield break;
@@ -126,11 +123,25 @@ public class Tile : MonoBehaviour
         Instantiate(bombPrefab, transform);
         SoundManager.instance.PlaySE(SoundType.Explosion);
     }
-    public void SpawnChallengeBox()
+    public void SpawnChallengeBox(float rate)
     {
         challengeBox = Instantiate(challengeBoxPrefab, transform);
         challengeBoxAnim = challengeBox.GetComponent<Animator>();
         challengeBoxSpr = challengeBox.GetComponent<SpriteRenderer>();
+        this.bonusRate = rate;
+        if(rate == 100)
+        {
+            challengeBoxSpr.sprite = rainbowBonus;
+        }
+        else if(rate == 30 || rate == 5)
+        {
+            challengeBoxSpr.sprite = goldBonus;
+
+        }
+        else if(rate == 1 || rate == 0.1f)
+        {
+            challengeBoxSpr.sprite = silverBonus;
+        }
         hitEffect = Instantiate(hitEffectPrefab,challengeBox.transform);
         SoundManager.instance.PlaySE(SoundType.ChallengeBox_Appear);
     }
@@ -139,8 +150,14 @@ public class Tile : MonoBehaviour
         if (challengeBox == null) return;
         challengeBox.transform.GetChild(0).gameObject.SetActive(false);
     }
+    public float GetBonusRate()
+    {
+        return bonusRate;
+    }
     public void OpenChallengeBox()
     {
         isOpendChallengeBox = true;
+        var rateStr = bonusRate.ToString();
+        PlayBonusAnimation(rateStr);
     }
 }

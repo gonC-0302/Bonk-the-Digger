@@ -291,6 +291,9 @@ MonoBehaviour:
   coinPrefab: {fileID: 3491391436632035485, guid: 28925d65ecde644ce90f0084bb273d7e, type: 3}
   anim: {fileID: 6818135561584388388}
   hitEffectPrefab: {fileID: 2616827296934537268, guid: 2f666f0b0a094443c9d2991244aefd7c, type: 3}
+  silverBonus: {fileID: -8020663094080060615, guid: c0ac72e73a2674d3482ea76d5a3108c7, type: 3}
+  goldBonus: {fileID: -5593110621887041211, guid: b8fb8424fc2834fe3bc384946f45810a, type: 3}
+  rainbowBonus: {fileID: -850535500093146033, guid: ea11f08d81f394c4886c7c2b18440525, type: 3}
 --- !u!61 &8314460733135432788
 BoxCollider2D:
   m_ObjectHideFlags: 0

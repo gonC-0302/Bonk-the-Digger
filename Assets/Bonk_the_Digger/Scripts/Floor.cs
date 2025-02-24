@@ -51,11 +51,11 @@ public class Floor : MonoBehaviour
 
         // 爆弾タイルとボーナスタイルの番号を決める
         var remainingNumbers = DetermineBombTilePosition(numbers, bombCount);
-        Debug.Log($"階層{floorNubmer}の爆弾タイル：{string.Join(",", bombTileNumbersList)}");
+        //Debug.Log($"階層{floorNubmer}の爆弾タイル：{string.Join(",", bombTileNumbersList)}");
         if (floorNubmer != 0 && floorNubmer % 5 == 0)
         {
             DetermineBonusTilePosition(remainingNumbers);
-            Debug.Log($"階層{floorNubmer}のボーナスタイル：{bonusTileNumber}");
+            //Debug.Log($"階層{floorNubmer}のボーナスタイル：{bonusTileNumber}");
         }
 
         // 爆弾タイルとボーナスタイルを設定する

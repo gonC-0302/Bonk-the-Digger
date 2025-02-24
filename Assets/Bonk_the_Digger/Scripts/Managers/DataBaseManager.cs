@@ -5,7 +5,6 @@ public class DataBaseManager : MonoBehaviour
     public static DataBaseManager instance;
     public SoundDataSO soundDataSO;
     public TileItemDataSO tileDataSO;
-    public CashBackRateDataSO cashBackRateDataSO;
 
     private void Awake()
     {

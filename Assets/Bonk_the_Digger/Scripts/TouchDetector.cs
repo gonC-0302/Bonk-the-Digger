@@ -49,7 +49,7 @@ public class TouchDetector : MonoBehaviour
                             tile.OpenChallengeBox();
                             SoundManager.instance.PlaySE(SoundType.ChallengeBox_Open);
                             gameManager.ChangeToMoveCharacterState();
-                            character.GetTreasureBox(tile);
+                            StartCoroutine(character.GetTreasureBox(tile));
                         }
                     }
                 }

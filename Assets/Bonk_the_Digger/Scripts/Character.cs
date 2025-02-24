@@ -10,9 +10,6 @@ public class Character : MonoBehaviour
     private CashManager cashManager;
     [SerializeField]
     private Animator anim;
-    //[SerializeField]
-    //private SpriteRenderer discoverIcon;
-    private int clearCount;
 
     /// <summary>
     /// 掘る対象のタイルの場所まで移動
@@ -32,7 +29,6 @@ public class Character : MonoBehaviour
             var targetPosX = tile.transform.position.x;
             anim.SetBool("IsRunning", true);
             var moveTime = Mathf.Abs(diff) / 0.775f * 0.5f;
-            Debug.Log(moveTime);
             gameObject.transform.DOMoveX(targetPosX, moveTime).SetEase(Ease.Linear).
                 OnComplete(() =>
                 {
@@ -86,7 +82,8 @@ public class Character : MonoBehaviour
                 anim.Play("Lose");
                 yield break;
             case TileType.ChallengeBox:
-                tile.SpawnChallengeBox();
+                var bonusRate = cashManager.CalculateBonusRate();
+                tile.SpawnChallengeBox(bonusRate);
                 gameManager.StartBonusTap();
                 yield break;
         }
@@ -94,20 +91,19 @@ public class Character : MonoBehaviour
 
     public void GetCoin()
     {
-        clearCount++;
-        cashManager.EvaluateCurrentCashBackAmount(clearCount);
+        cashManager.EvaluateCurrentCashBackAmount();
         PlayJumpAnimation();
     }
-    public void GetTreasureBox(Tile tile)
+    public IEnumerator GetTreasureBox(Tile tile)
     {
-        clearCount++;
         anim.SetBool("IsDigging", false);
-        float random = Random.Range(0.5f, 2f);
-        string randomStr = random.ToString("f1");
-        tile.PlayBonusAnimation(randomStr);
-        cashManager.GetBonus(float.Parse(randomStr));
-        //SoundManager.instance.PlaySE(SoundType.GetCoin);
+        //var bonusRate = cashManager.CalculateBonusRate();
+        //var rateStr = bonusRate.ToString();
+        //tile.PlayBonusAnimation(rateStr);
+        var rate = tile.GetBonusRate();
         PlayJumpAnimation();
+        yield return new WaitForSeconds(1.5f);
+        cashManager.GetBonus(rate);
     }
     public void PlayJumpAnimation()
     {
